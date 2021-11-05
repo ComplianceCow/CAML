@@ -1,0 +1,27 @@
+[
+    {
+        "controlDomain": "Application & Interface Security",
+        "controlTitle": "Automated Secure Application Deployment",
+        "controlID": "AIS-06",
+        "controlSpec": "Establish and implement strategies and capabilities for secure, standardized, and compliant application deployment. Automate where possible.",
+        "dependentControls": [
+            "DCS-06",
+            "GRC-05"
+        ]
+    },
+    {
+        "controlDomain": "Application & Interface Security",
+        "controlTitle": "Automated Secure Application Deployment",
+        "controlID": "AIS-07",
+        "controlSpec": "Define and implement a process to remediate application security vulnerabilities, automating remediation when possible.",
+        "dependentControls": [
+            "AIS-02",
+            "AIS-03",
+            "AIS-06",
+            "DCS-06",
+            "GRC-02",
+            "TVM-10",
+            "TVM-07"
+        ]
+    }
+]
