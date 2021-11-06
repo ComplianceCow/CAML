@@ -9,46 +9,46 @@ type MeasurePeriod int
 type ArtifactType int
 
 const (
-	CAMVersion   string = "0.0.1"
-	CAMNamespace string = "/v1/alpha1"
+	Version_   string = "0.0.1"
+	Namespace_ string = "/v1/alpha1"
 )
 
 const (
-	UndefinedMeasureUnit MeasureUnit = iota
-	NumericInt
-	NumericaFloat
+	UndefinedMeasureUnit_ MeasureUnit = iota
+	NumericInt_
+	NumericaFloat_
 )
 
 const (
-	UndefinedMeasureType MeasureType = iota
-	Percentage
-	Max
-	Min
-	Count
-	Distinct_Count
-	Sum
+	UndefinedMeasureType_ MeasureType = iota
+	Percentage_
+	Max_
+	Min_
+	Count_
+	DistinctCount_
+	Sum_
 )
 
 const (
-	UndefinedMeasurePeriod MeasurePeriod = iota
-	Hour
-	Day
-	Week
-	Month
-	Year
+	UndefinedMeasurePeriod_ MeasurePeriod = iota
+	Hour_
+	Day_
+	Week_
+	Month_
+	Year_
 )
 
 const (
-	Undefined_Depedency_Type DependentControlType = iota
-	Parent
-	Child
-	Sibling
+	UndefinedDepedencyType_ DependentControlType = iota
+	Parent_
+	Child_
+	Sibling_
 )
 
 const (
-	UndefinedArtifactType ArtifactType = iota
-	Measure
-	Metric
-	Report
-	Asset
+	UndefinedArtifactType_ ArtifactType = iota
+	Measure_
+	Metric_
+	Report_
+	Asset_
 )

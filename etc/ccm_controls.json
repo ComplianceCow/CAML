@@ -1,27 +1,331 @@
-[
-    {
-        "controlDomain": "Application & Interface Security",
-        "controlTitle": "Automated Secure Application Deployment",
-        "controlID": "AIS-06",
-        "controlSpec": "Establish and implement strategies and capabilities for secure, standardized, and compliant application deployment. Automate where possible.",
-        "dependentControls": [
-            "DCS-06",
-            "GRC-05"
-        ]
-    },
-    {
-        "controlDomain": "Application & Interface Security",
-        "controlTitle": "Automated Secure Application Deployment",
-        "controlID": "AIS-07",
-        "controlSpec": "Define and implement a process to remediate application security vulnerabilities, automating remediation when possible.",
-        "dependentControls": [
-            "AIS-02",
-            "AIS-03",
-            "AIS-06",
-            "DCS-06",
-            "GRC-02",
-            "TVM-10",
-            "TVM-07"
-        ]
-    }
-]
+{
+    "controls": [
+        {
+            "controlDomain": "AIS",
+            "controlTitle": "Automated Secure Application Deployment",
+            "controlID": "AIS-06",
+            "controlSpec": "Establish and implement strategies and capabilities for secure, standardized, and compliant application deployment. Automate where possible.",
+            "dependentControls": [
+                "DCS-06",
+                "GRC-05"
+            ]
+        },
+        {
+            "controlDomain": "AIS",
+            "controlTitle": "Application Vulnerability Remediation",
+            "controlID": "AIS-07",
+            "controlSpec": "Define and implement a process to remediate application security vulnerabilities, automating remediation when possible.",
+            "dependentControls": [
+                "AIS-02",
+                "AIS-06",
+                "TVM-07",
+                "DCS-06",
+                "AIS-03",
+                "TVM-10",
+                "GRC-02"
+            ]
+        },
+        {
+            "controlDomain": "BCR",
+            "controlTitle": "Business Continuity Exercises",
+            "controlID": "BCR-06",
+            "controlSpec": "Exercise and test business continuity and operational resilience plans at least annually or upon significant changes.",
+            "dependentControls": [
+                "BCR-01",
+                "BCR-02"
+            ]
+        },
+        {
+            "controlDomain": "CCC",
+            "controlTitle": "Change Management Technology",
+            "controlID": "CCC-03",
+            "controlSpec": "Manage the risks associated with applying changes to organization assets, including application, systems, infrastructure, configuration, etc., regardless of whether the assets are managed internally or externally (i.e., outsourced).",
+            "dependentControls": [
+                "DCS-06"
+            ]
+        },
+        {
+            "controlDomain": "CCC",
+            "controlTitle": "Detection of Baseline Deviation",
+            "controlID": "CCC-07",
+            "controlSpec": "Implement detection measures with proactive notification in case of changes deviating from the established baseline.",
+            "dependentControls": [
+                "DCS-06",
+                "CCC-03"
+            ]
+        },
+        {
+            "controlDomain": "CEK",
+            "controlTitle": "Data Encryption",
+            "controlID": "CEK-03",
+            "controlSpec": "Provide cryptographic protection to data at-rest and in-transit, using cryptographic libraries certified to approved standards.",
+            "dependentControls": [
+                "CEK-04",
+                "DCS-06",
+                "CEK-0-1"
+            ]
+        },
+        {
+            "controlDomain": "CEK",
+            "controlTitle": "Encryption Algorithm",
+            "controlID": "CEK-04",
+            "controlSpec": "Use encryption algorithms that are appropriate for data protection, considering the classification of data, associated risks, and usability of the encryption technology.",
+            "dependentControls": [
+                "CEKM-05"
+            ]
+        },
+        {
+            "controlDomain": "DCS",
+            "controlTitle": "Assets Cataloguing and Tracking",
+            "controlID": "DCS-06",
+            "controlSpec": "Catalogue and track all relevant physical and logical assets located at all of the CSP's sites within a secured system.",
+            "dependentControls": [
+                "LOG-05"
+            ]
+        },
+        {
+            "controlDomain": "DSP",
+            "controlTitle": "Data Classification",
+            "controlID": "DSP-04",
+            "controlSpec": "Classify data according to its type and sensitivity level.",
+            "dependentControls": [
+                "DSP-05",
+                "DSP-01",
+                "DSP-03",
+                "DSP-04",
+                "DSP-05",
+                "DSP-01",
+                "DSP-03",
+                "DSP-04",
+                "DCS-06"
+            ]
+        },
+        {
+            "controlDomain": "DSP",
+            "controlTitle": "Data Flow Documentation",
+            "controlID": "DSP-05",
+            "controlSpec": "Create data flow documentation to identify what data is processed, stored or transmitted where. Review data flow documentation at defined intervals, at least annually, and after any change.",
+            "dependentControls": [
+                "DSP-03"
+            ]
+        },
+        {
+            "controlDomain": "GRC",
+            "controlTitle": "Policy Exception Process",
+            "controlID": "GRC-04",
+            "controlSpec": "Establish and follow an approved exception process as mandated by the governance program whenever a deviation from an established policy occurs.",
+            "dependentControls": [
+                "AIS-07"
+            ]
+        },
+        {
+            "controlDomain": "IAM",
+            "controlTitle": "User Access Changes and Revocation",
+            "controlID": "IAM-07",
+            "controlSpec": "De-provision or respectively modify access of movers / leavers or system identity changes in a timely manner in order to effectively adopt and communicate identity and access management policies.",
+            "dependentControls": [
+                "IAM-03",
+                "IAM-06",
+                "IAM-10"
+            ]
+        },
+        {
+            "controlDomain": "IAM",
+            "controlTitle": "User Access Review",
+            "controlID": "IAM-08",
+            "controlSpec": "Review and revalidate user access for least privilege and separation of duties with a frequency that is commensurate with organizational risk tolerance.",
+            "dependentControls": [
+                "IAM-03",
+                "IAM-05",
+                "IAM-06",
+                "IAM-10"
+            ]
+        },
+        {
+            "controlDomain": "IAM",
+            "controlTitle": "Segregation of Privileged Access Roles",
+            "controlID": "IAM-09",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures for the segregation of privileged access roles such that administrative access to data, encryption and key management capabilities and logging capabilities are distinct and separated.",
+            "dependentControls": [
+                "IAM-03",
+                "IAM-05",
+                "IAM-10"
+            ]
+        },
+        {
+            "controlDomain": "IPY",
+            "controlTitle": "Secure Interoperability and Portability Management",
+            "controlID": "IPY-03",
+            "controlSpec": "Implement cryptographically secure and standardized network protocols for the management, import and export of data.",
+            "dependentControls": [
+                "CEK",
+                "IVS-02",
+                "IPY-02",
+                "DSP-05"
+            ]
+        },
+        {
+            "controlDomain": "IVS",
+            "controlTitle": "OS Hardening and Base Controls",
+            "controlID": "IVS-04",
+            "controlSpec": "Harden host and guest OS, hypervisor or infrastructure control plane according to their respective best practices, and supported by technical controls, as part of a security baseline.",
+            "dependentControls": [
+                "DCS-06",
+                "CCC-03",
+                "CCC-07"
+            ]
+        },
+        {
+            "controlDomain": "LOG",
+            "controlTitle": "Security Monitoring and Alerting",
+            "controlID": "LOG-03",
+            "controlSpec": "Identify and monitor security-related events within applications and the underlying infrastructure. Define and implement a system to generate alerts to responsible stakeholders based on such events and corresponding metrics.",
+            "dependentControls": [
+                ""
+            ]
+        },
+        {
+            "controlDomain": "LOG",
+            "controlTitle": "Audit Logs Monitoring and Response",
+            "controlID": "LOG-05",
+            "controlSpec": "Monitor security audit logs to detect activity outside of typical or expected patterns. Establish and follow a defined process to review and take appropriate and timely actions on detected anomalies.",
+            "dependentControls": [
+                "LOG-03",
+                "LOG-01"
+            ]
+        },
+        {
+            "controlDomain": "LOG",
+            "controlTitle": "Encryption Monitoring and Reporting",
+            "controlID": "LOG-10",
+            "controlSpec": "Establish and maintain a monitoring and internal reporting capability over the operations of cryptographic, encryption and key management policies, processes, procedures, and controls.",
+            "dependentControls": [
+                "CEK-03",
+                "CEK-04",
+                "CEK-05",
+                "CEK-06",
+                "CEK-07",
+                "CEK-08",
+                "CEK-09",
+                "CEK-10",
+                "CEK-11",
+                "CEK-12",
+                "CEK-13",
+                "CEK-14",
+                "CEK-15",
+                "CEK-16",
+                "CEK-17",
+                "CEK-18",
+                "CEK-19",
+                "CEK-20",
+                "CEK-21"
+            ]
+        },
+        {
+            "controlDomain": "LOG",
+            "controlTitle": "Failures and Anomalies Reporting",
+            "controlID": "LOG-13",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures for the reporting of anomalies and failures of the monitoring system and provide immediate notification to the accountable party.",
+            "dependentControls": [
+                "LOG-03",
+                "LOG-08",
+                "SEF-06"
+            ]
+        },
+        {
+            "controlDomain": "SEF",
+            "controlTitle": "Incident Response Metrics",
+            "controlID": "SEF-05",
+            "controlSpec": "Establish and monitor information security incident metrics.",
+            "dependentControls": [
+                ""
+            ]
+        },
+        {
+            "controlDomain": "SEF",
+            "controlTitle": "Event Triage Processes",
+            "controlID": "SEF-06",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures supporting business processes to triage security-related events.",
+            "dependentControls": [
+                "LOG-03",
+                "SEF-01",
+                "SEF-05",
+                "LOG-03",
+                "SEF-01",
+                "SEF-05"
+            ]
+        },
+        {
+            "controlDomain": "STA",
+            "controlTitle": "Supply Chain Inventory",
+            "controlID": "STA-07",
+            "controlSpec": "Develop and maintain an inventory of all supply chain relationships.",
+            "dependentControls": [
+                "DCS-06",
+                "LOG-03",
+                "LOG-05",
+                "LOG-03"
+            ]
+        },
+        {
+            "controlDomain": "TVM",
+            "controlTitle": "Vulnerability Remediation Schedule",
+            "controlID": "TVM-03",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures to enable both scheduled and emergency responses to vulnerability identifications, based on the identified risk.",
+            "dependentControls": [
+                "TVM-08"
+            ]
+        },
+        {
+            "controlDomain": "TVM",
+            "controlTitle": "Vulnerability Identification",
+            "controlID": "TVM-07",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures for the detection of vulnerabilities on organizationally managed assets at least monthly.",
+            "dependentControls": [
+                "TVM-07",
+                "UEM-14",
+                "DCS-06"
+            ]
+        },
+        {
+            "controlDomain": "TVM",
+            "controlTitle": "Vulnerability Management Metrics",
+            "controlID": "TVM-10",
+            "controlSpec": "Establish, monitor and report metrics for vulnerability identification and remediation at defined intervals.",
+            "dependentControls": [
+                "AIS-07",
+                "TVM-08"
+            ]
+        },
+        {
+            "controlDomain": "UEM",
+            "controlTitle": "Endpoint Inventory",
+            "controlID": "UEM-04",
+            "controlSpec": "Maintain an inventory of all endpoints used to store and access company data.",
+            "dependentControls": [
+                "LOG-05"
+            ]
+        },
+        {
+            "controlDomain": "UEM",
+            "controlTitle": "Endpoint Management",
+            "controlID": "UEM-05",
+            "controlSpec": "Define, implement and evaluate processes, procedures and technical measures to enforce policies and controls for all endpoints permitted to access systems and/or store, transmit, or process organizational data.",
+            "dependentControls": [
+                "UEM-04"
+            ]
+        },
+        {
+            "controlDomain": "UEM",
+            "controlTitle": "Anti-Malware Detection and Prevention",
+            "controlID": "UEM-09",
+            "controlSpec": "Configure managed endpoints with anti-malware detection and prevention technology and services.",
+            "dependentControls": [
+                "TVM-02",
+                "DCS-05",
+                "DCS-06",
+                "DSP-01"
+            ]
+        }
+    ]
+}
