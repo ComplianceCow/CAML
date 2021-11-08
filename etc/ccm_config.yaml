@@ -1,0 +1,43 @@
+metrics:
+- metricID: AIS-06-M1
+  measures:
+  - measureName: prod_apps_with_verification
+    measureAlias: A
+    measureDescription: Total number of pieces of Production Code that have an Associated
+      Verification Step
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: prod_apps_deployed
+    measureAlias: B
+    measureDescription: Total number of pieces of Production Code
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+- metricID: AIS-07-M3
+  measures:
+  - measureName: prod_apps_deployed_with_acceptable_vuls
+    measureAlias: A
+    measureDescription: Number of deployed production applications with acceptable
+      level of risk from application security vulnerabilities
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: prod_apps_deployed
+    measureAlias: B
+    measureDescription: Total Number of deployed production applications
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 30d

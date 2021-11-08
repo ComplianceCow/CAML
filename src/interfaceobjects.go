@@ -16,7 +16,7 @@ type ControlDefinitionVO struct {
 }
 
 type MetricsVO struct {
-	Metrics []MetricDefinitionVO `json:"metrics,omitempty" yaml:"controls,omitempty"`
+	Metrics []MetricDefinitionVO `json:"metrics,omitempty" yaml:"metrics,omitempty"`
 }
 
 type MetricDefinitionVO struct {
@@ -30,8 +30,8 @@ type MetricDefinitionVO struct {
 	MetricSLODescription           string      `json:"metricSLODescription,omitempty" yaml:"metricSLODescription,omitempty"`
 	MetricMeasures                 []MeasureVO `json:"measures,omitempty" yaml:"measures,omitempty"`
 	// MetricFormula: Example, "{{A}}/{{B}}*100" where {{A}} and {{B}} corresponds to the Metrics Measures
-	MetricFormula  string `json:"metricFormula,omitempty" yaml:"metricFormula,omitempty"`
-	MetricDuration string `json:"metricDuration,omitempty" yaml:"metricDuration,omitempty"`
+	MetricFormula string `json:"metricFormula,omitempty" yaml:"metricFormula,omitempty"`
+	MetricPeriod  string `json:"metricPeriod,omitempty" yaml:"metricPeriod,omitempty"`
 	// Metrics_Frequency in CRON format
 	MetricFrequency    string                `json:"metricFrequency,omitempty" yaml:"metricFrequency,omitempty"`
 	SLORecommendations []SLORecommendationVO `json:"metricSLORecommendations,omitempty" yaml:"metricSLORecommendations,omitempty"`
@@ -41,6 +41,7 @@ type MeasureVO struct {
 	MeasureName        string `json:"measureName,omitempty" yaml:"measureName,omitempty"`
 	MeasureAlias       string `json:"measureAlias,omitempty" yaml:"measureAlias,omitempty"`
 	MeasureDescription string `json:"measureDescription,omitempty" yaml:"measureDescription,omitempty"`
+	MeasureNotes       string `json:"measureNotes,omitempty" yaml:"measureNotes,omitempty"`
 	// Refer MeasureUnit
 	MeasureUnit   string            `json:"measureUnit,omitempty" yaml:"measureUnit,omitempty"`
 	MeasureType   string            `json:"measureType,omitempty" yaml:"measureType,omitempty"`
@@ -51,30 +52,21 @@ type MeasureVO struct {
 type SLORecommendationVO struct {
 	SLOCondition            string `json:"sloCondition,omitempty" yaml:"sloCondition,omitempty"`
 	SLOConditionDescription string `json:"sloConditionDescription,omitempty" yaml:"sloConditionDescription,omitempty"`
-
+	// SLO_Range values will be strings that will be cast at runtime into appropriate data types
+	// format: 90d, 1y, 20h etc.
+	SLORangeMin string `json:"sloRangeMin,omitempty" yaml:"sloRangeMin,omitempty"`
+	SLORangeMax string `json:"sloRangeMax,omitempty" yaml:"sloRangeMax,omitempty"`
 	/* SLOUnit:  Refer MeasureUnit. This is an enumerated variable and can be one of the following
-	numericint - To indicate that the SLO output is a signed number
-	numeric_float - To indicate that the SLO output can take decimal values
-	*/
-	SLOUnit string `json:"sloUnit,omitempty" yaml:"sloUnit,omitempty"`
-
-	/* SLOType:  Refer MeasureType. This is an enumerated variable and can be one of the following
 	percentage - To indicate that the SLOType is a percentage
 	max - To indicate that the SLOType is a MAX value of
 	min - To indicate that the SLOType is a MIN value of
 	*/
-	SLOType string `json:"sloType,omitempty" yaml:"sloType,omitempty"`
-
+	SLOUnit string `json:"sloUnit,omitempty" yaml:"sloUnit,omitempty"`
 	/* SLOPeriod: Refer MeasurePeriod. This is an enumerated variable and can be one of the following
 	Undefined - Not applicable. In the case of %
 	Hour, Day, Week, Month, Year
 	*/
 	SLOPeriod string `json:"sloPeriod,omitempty" yaml:"sloPeriod,omitempty"`
-
-	// SLO_Range values will be strings that will be cast at runtime into appropriate data types
-	// format: 90d, 1y, 20h etc.
-	SLORangeMin string `json:"sloRangeMin,omitempty" yaml:"sloRangeMin,omitempty"`
-	SLORangeMax string `json:"sloRangeMax,omitempty" yaml:"sloRangeMax,omitempty"`
 }
 
 // The following specify the run time constructs
@@ -115,6 +107,7 @@ type MeasureRuntimeVO struct {
 	MeasureTags           map[string]string     `json:"measureTags,omitempty" yaml:"measureTags,omitempty"`
 	MeasureReportDate     string                `json:"measureDate,omitempty" yaml:"measureDTM,omitempty"`
 	MeasureEvidences      *ProcessorArtifactsVO `json:"measureEvidences,omitempty" yaml:"measureEvidences,omitempty"`
+	MeasurePolicy         *PolicyVO             `json:"measurePolicy,omitempty" yaml:"measurePolicy,omitempty"`
 }
 
 type MetricsRuntimeVO struct {
@@ -128,6 +121,7 @@ type MetricsRuntimeVO struct {
 	MetricsTags            map[string]string     `json:"metricsTags,omitempty" yaml:"metricsTags,omitempty"`
 	MetricsReportDate      string                `json:"metricsDate,omitempty" yaml:"metricsDTM,omitempty"`
 	MetricsEvidences       *ProcessorArtifactsVO `json:"metricsEvidences,omitempty" yaml:"metricsEvidences,omitempty"`
+	MetricsPolicy          *PolicyVO             `json:"metricsPolicy,omitempty" yaml:"metricsPolicy,omitempty"`
 }
 
 type AuthzBoundaryVO struct {
@@ -136,4 +130,8 @@ type AuthzBoundaryVO struct {
 	AuthzBoundaryTags  map[string]string     `json:"authzBoundaryTags,omitempty" yaml:"authzBoundaryTags,omitempty"`
 	AuthzProcessor     *ProcessorVO          `json:"authzProcessor,omitempty" yaml:"authzProcessor,omitempty"`
 	AuthzAssets        *ProcessorArtifactsVO `json:"authzAssets,omitempty" yaml:"authzAssets,omitempty"`
+}
+type PolicyVO struct {
+	PolicyName        string
+	PolicyDescription string
 }

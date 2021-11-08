@@ -15,18 +15,18 @@ const (
 
 const (
 	UndefinedMeasureUnit_ MeasureUnit = iota
-	NumericInt_
-	NumericaFloat_
-)
-
-const (
-	UndefinedMeasureType_ MeasureType = iota
 	Percentage_
 	Max_
 	Min_
 	Count_
 	DistinctCount_
 	Sum_
+)
+
+const (
+	UndefinedMeasureType_ MeasureType = iota
+	Calculate_
+	Info_
 )
 
 const (

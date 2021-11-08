@@ -48,8 +48,7 @@ func generateControlsData() (controlsVO ControlsVO, err error) {
 	return controlsVO, nil
 	// ccmControls = append(ccmControls, ccmControl)
 }
-
-func generateCAMData() (metricsVO MetricsVO, err error) {
+func generateMetricsData() (metricsVO MetricsVO, err error) {
 
 	metrics := make([]MetricDefinitionVO, 0)
 
@@ -90,6 +89,115 @@ func generateCAMData() (metricsVO MetricsVO, err error) {
 	Rationale: The 2020 APPLICATION SECURITY OBSERVABILITY REPORT from Contrast Labs found 26% of applications had at least 1 serious vulnerability with 79% of those vulnerabilities remediated within 30 days. That leaves 20% of applications with serious vulnerabilities after 30 days, so the SLO to have 80% of production code with acceptable level of risk from application security vulnerabilities should be achievable for the average organization."`
 
 	metrics = append(metrics, metricDefinition)
+
+	metricsVO.Metrics = metrics
+
+	metricsJSON, err := json.Marshal(metricsVO)
+	if err != nil {
+		log.Fatalf("Error marshaling json data. %s", err.Error())
+		return
+	}
+	fmt.Printf("%s\n\n\n", metricsJSON)
+
+	metricsYAML, err := yaml.Marshal(metricsVO)
+	if err != nil {
+		log.Fatalf("Error marshaling json data. %s", err.Error())
+		return
+	}
+	fmt.Printf("%s", metricsYAML)
+
+	return metricsVO, nil
+}
+
+func generateMetricsConfiguration() (metricsVO MetricsVO, err error) {
+
+	metrics := make([]MetricDefinitionVO, 0)
+
+	{
+		metricDefinition := MetricDefinitionVO{}
+		metricDefinition.MetricID = "AIS-06-M1"
+		measures := make([]MeasureVO, 0)
+
+		{
+			measure := MeasureVO{}
+			measure.MeasureName = "prod_apps_with_verification"
+			measure.MeasureAlias = "A"
+			measure.MeasureDescription = "Total number of pieces of Production Code that have an Associated Verification Step"
+			measure.MeasureType = "calculate"
+			measure.MeasureUnit = "count"
+			measure.MeasurePeriod = "30d"
+
+			measures = append(measures, measure)
+		}
+		{
+			measure := MeasureVO{}
+			measure.MeasureName = "prod_apps_deployed"
+			measure.MeasureAlias = "B"
+			measure.MeasureDescription = "Total number of pieces of Production Code"
+			measure.MeasureType = "calculate"
+			measure.MeasureUnit = "count"
+			measure.MeasurePeriod = "30d"
+
+			measures = append(measures, measure)
+		}
+		metricDefinition.MetricMeasures = measures
+
+		metricDefinition.MetricFormula = "%v%%,({{A}}/{{B}*100)"
+		metricDefinition.MetricPeriod = "30d"
+		metricDefinition.MetricFrequency = "0 5 */30 * *"
+		metricDefinition.SLORecommendations = make([]SLORecommendationVO, 0)
+		{
+			slo := SLORecommendationVO{}
+			slo.SLOPeriod = "30d"
+			slo.SLORangeMin = "95%"
+			metricDefinition.SLORecommendations = append(metricDefinition.SLORecommendations, slo)
+		}
+
+		metrics = append(metrics, metricDefinition)
+	}
+
+	{
+		metricDefinition := MetricDefinitionVO{}
+		metricDefinition.MetricID = "AIS-07-M3"
+		measures := make([]MeasureVO, 0)
+
+		{
+			measure := MeasureVO{}
+			measure.MeasureName = "prod_apps_deployed_with_acceptable_vuls"
+			measure.MeasureAlias = "A"
+			measure.MeasureDescription = "Number of deployed production applications with acceptable level of risk from application security vulnerabilities"
+			measure.MeasureType = "calculate"
+			measure.MeasureUnit = "count"
+			measure.MeasurePeriod = "30d"
+
+			measures = append(measures, measure)
+		}
+		{
+			measure := MeasureVO{}
+			measure.MeasureName = "prod_apps_deployed"
+			measure.MeasureAlias = "B"
+			measure.MeasureDescription = "Total Number of deployed production applications"
+			measure.MeasureType = "calculate"
+			measure.MeasureUnit = "count"
+			measure.MeasurePeriod = "30d"
+
+			measures = append(measures, measure)
+		}
+		metricDefinition.MetricMeasures = measures
+
+		metricDefinition.MetricFormula = "%v%%,({{A}}/{{B}*100)"
+		metricDefinition.MetricPeriod = "30d"
+		metricDefinition.MetricFrequency = "0 5 */30 * *"
+		metricDefinition.SLORecommendations = make([]SLORecommendationVO, 0)
+		{
+			slo := SLORecommendationVO{}
+			slo.SLOPeriod = "30d"
+			slo.SLORangeMin = "80%"
+			metricDefinition.SLORecommendations = append(metricDefinition.SLORecommendations, slo)
+		}
+
+		metrics = append(metrics, metricDefinition)
+	}
 
 	metricsVO.Metrics = metrics
 
