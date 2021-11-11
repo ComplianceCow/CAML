@@ -46,8 +46,8 @@ func generateControlsData() (controlsVO ControlsVO, err error) {
 	fmt.Printf("%s", controlsYAML)
 
 	return controlsVO, nil
-	// ccmControls = append(ccmControls, ccmControl)
 }
+
 func generateMetricsData() (metricsVO MetricsVO, err error) {
 
 	metrics := make([]MetricDefinitionVO, 0)
@@ -216,4 +216,110 @@ func generateMetricsConfiguration() (metricsVO MetricsVO, err error) {
 	fmt.Printf("%s", metricsYAML)
 
 	return metricsVO, nil
+}
+
+func generateProcessorConfiguration() (providerVO ProviderVO, err error) {
+
+	providerVO.ProviderName = "compliancecow"
+	providerVO.ProviderURL = "https://dev.compliancecow.live/api/v1/login"
+	providerVO.ProviderToken = ""
+	providerVO.ProviderClientID = ""
+	providerVO.ProviderClientSecret = ""
+
+	return providerVO, nil
+
+}
+
+func generateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
+
+	metricsRuntimeVO.MetricID = "AIS-06-M1"
+	metricsRuntimeVO.Measures = make([]MeasureRuntimeVO, 0)
+	{
+		measure := MeasureRuntimeVO{}
+		measure.MeasureEvidences = &ProviderArtifactsVO{
+			Artifacts: make([]ProviderArtifact, 0),
+		}
+
+		measure.MeasureName = "prod_apps_with_verification"
+		measure.MeasureAlias = "A"
+		measure.MeasureValue = "90"
+		measure.MesurePeriodStartDate = "10/01/2021"
+		measure.MesurePeriodEndDate = "10/31/2021"
+		measure.MeasureReportDate = "11/05/2021"
+		{
+			artifact := ProviderArtifact{}
+			artifact.ArtifactType = Measure_
+			artifact.ArtifactName = ""
+			artifact.ArtifactDescription = ""
+			artifact.ArtifactStatus = Success_
+			artifact.ArtifactURL = "https://dev.compliancecow.live/measures/ais06m1/files/7117758f-b14a-4784-822d-44383f17180b/security_test_coverage.csv"
+			measure.MeasureEvidences.Artifacts = append(measure.MeasureEvidences.Artifacts, artifact)
+		}
+
+		metricsRuntimeVO.Measures = append(metricsRuntimeVO.Measures, measure)
+	}
+
+	{
+		measure := MeasureRuntimeVO{}
+		measure.MeasureEvidences = &ProviderArtifactsVO{
+			Artifacts: make([]ProviderArtifact, 0),
+		}
+		measure.MeasureName = "prod_apps_deployed"
+		measure.MeasureAlias = "B"
+		measure.MeasureValue = "120"
+		measure.MesurePeriodStartDate = "10/01/2021"
+		measure.MesurePeriodEndDate = "10/31/2021"
+		measure.MeasureReportDate = "11/05/2021"
+
+		{
+			artifact := ProviderArtifact{}
+			artifact.ArtifactType = Measure_
+			artifact.ArtifactName = ""
+			artifact.ArtifactDescription = ""
+			artifact.ArtifactStatus = Success_
+			artifact.ArtifactURL = "https://dev.compliancecow.live/measures/ais06m1/files/7baadd77-fa4e-49f6-8945-464c969358df/inventory_pmt_apps.csv"
+			measure.MeasureEvidences.Artifacts = append(measure.MeasureEvidences.Artifacts, artifact)
+		}
+		metricsRuntimeVO.Measures = append(metricsRuntimeVO.Measures, measure)
+
+	}
+
+	metricsRuntimeVO.MetricsAuthzBoundary = &AuthzBoundaryVO{
+		AuthzBoundaryName:  "composite payment processing apps",
+		AuthzBoundaryAlias: "pmt",
+		AuthzAssets: &ProviderArtifactsVO{
+			ProviderName:      "compliancecow",
+			ProviderNotes:     "The authorization boundary for the composite payment processing applications is defined through an application configuration in ComplianceCow. Refer to https://<<url>> for more details",
+			IsArtifactPresent: true,
+		},
+	}
+	{
+		metricsRuntimeVO.MetricsAuthzBoundary.AuthzAssets.Artifacts = make([]ProviderArtifact, 0)
+		{
+			artifact := ProviderArtifact{}
+			artifact.ArtifactType = Asset_
+			artifact.ArtifactName = "payment app config"
+			artifact.ArtifactDescription = "application configuration for the payment processing application in json format"
+			artifact.ArtifactURL = "https://dev.compliancecow.live/apps/app-01?format=yaml"
+
+			metricsRuntimeVO.MetricsAuthzBoundary.AuthzAssets.Artifacts = append(metricsRuntimeVO.MetricsAuthzBoundary.AuthzAssets.Artifacts, artifact)
+		}
+	}
+
+	metricRuntimeJSON, err := json.Marshal(metricsRuntimeVO)
+	if err != nil {
+		log.Fatalf("Error marshaling json data. %s", err.Error())
+		return
+	}
+	fmt.Printf("%s\n\n\n", metricRuntimeJSON)
+
+	metricRuntimeYAML, err := yaml.Marshal(metricsRuntimeVO)
+	if err != nil {
+		log.Fatalf("Error marshaling json data. %s", err.Error())
+		return
+	}
+	fmt.Printf("%s", metricRuntimeYAML)
+
+	return metricsRuntimeVO, nil
+
 }

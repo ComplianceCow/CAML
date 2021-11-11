@@ -41,7 +41,11 @@ func generateSampleData() {
 	// 	log.Fatalf("Error generating ccm controls data\n")
 	// }
 
-	if _, err := generateMetricsConfiguration(); err != nil {
+	// if _, err := generateMetricsConfiguration(); err != nil {
+	// 	log.Fatalf("Error generating ccm controls data\n")
+	// }
+
+	if _, err := generateMetricsRuntime(); err != nil {
 		log.Fatalf("Error generating ccm controls data\n")
 	}
 

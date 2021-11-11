@@ -19,13 +19,13 @@ type SLORecommendation struct {
 	*SLORecommendationVO
 }
 
-type Processor struct {
-	*ProcessorVO
+type Provider struct {
+	*ProviderVO
 }
 
-type ProcessorArtifacts struct {
-	*Processor
-	*ProcessorArtifactsVO
+type ProviderArtifacts struct {
+	*Provider
+	*ProviderArtifactsVO
 }
 
 type MeasureRuntime struct {
