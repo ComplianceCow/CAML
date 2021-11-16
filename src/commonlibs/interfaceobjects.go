@@ -1,5 +1,7 @@
 package commonlibs
 
+import "time"
+
 type ControlsVO struct {
 	Controls []ControlDefinitionVO `json:"controls,omitempty" yaml:"controls,omitempty"`
 }
@@ -36,8 +38,10 @@ type MetricDefinitionVO struct {
 	MetricFrequency    string                `json:"metricFrequency,omitempty" yaml:"metricFrequency,omitempty"`
 	MetricWeight       int                   `json:"metricWeight,omitempty" yaml:"metricWeight,omitempty"`
 	SLORecommendations []SLORecommendationVO `json:"metricSLORecommendations,omitempty" yaml:"metricSLORecommendations,omitempty"`
+	IsMetricActive     bool                  `json:"isActive,omitempty" yaml:"isActive,omitempty"`
 	MetricTags         map[string]string     `json:"metricTags,omitempty" yaml:"metricTags,omitempty"`
 }
+
 type MeasureVO struct {
 	MeasureName        string `json:"measureName,omitempty" yaml:"measureName,omitempty"`
 	MeasureAlias       string `json:"measureAlias,omitempty" yaml:"measureAlias,omitempty"`
@@ -100,9 +104,7 @@ type ProviderArtifact struct {
 }
 
 type MeasureRuntimeVO struct {
-	// *MetricDefinitionVO
-	// providerName string `json:"providerName,omitempty" yaml:"providerName,omitempty"`
-	// MeasureSourceID       string                `json:"measureID,omitempty" yaml:"measureID,omitempty"`
+	CustomerDomain        CustomerDomain       `json:"customer,omitempty" yaml:"customer,omitempty"`
 	MetricID              string               `json:"metricID,omitempty" yaml:"metricID,omitempty"`
 	MeasureName           string               `json:"measureName,omitempty" yaml:"measureName,omitempty"`
 	MeasureAlias          string               `json:"measureAlias,omitempty" yaml:"measureAlias,omitempty"`
@@ -111,15 +113,14 @@ type MeasureRuntimeVO struct {
 	MesurePeriodEndDate   string               `json:"measureEndDt,omitempty" yaml:"measureEndDt,omitempty"`
 	MeasureAuthzBoundary  *AuthzBoundaryVO     `json:"measureAuthzBoundary,omitempty" yaml:"measureAuthzBoundary,omitempty"`
 	MeasureTags           map[string]string    `json:"measureTags,omitempty" yaml:"measureTags,omitempty"`
-	MeasureReportDate     string               `json:"measureDate,omitempty" yaml:"measureDTM,omitempty"`
+	MeasureReportDate     time.Time            `json:"measureDTM,omitempty" yaml:"measureDTM,omitempty"`
 	MeasureEvidences      *ProviderArtifactsVO `json:"measureEvidences,omitempty" yaml:"measureEvidences,omitempty"`
 	MeasurePolicy         *PolicyVO            `json:"measurePolicy,omitempty" yaml:"measurePolicy,omitempty"`
 	MeasureExceptions     []ExceptionVO        `json:"exceptions,omitempty" yaml:"exceptions,omitempty"`
 }
 
 type MetricsRuntimeVO struct {
-	// providerName          string                `json:"providerName,omitempty" yaml:"providerName,omitempty"`
-	// MetricsSourceID        string                `json:"metricsID,omitempty" yaml:"metricsID,omitempty"`
+	CustomerDomain         CustomerDomain       `json:"customer,omitempty" yaml:"customer,omitempty"`
 	MetricID               string               `json:"metricID,omitempty" yaml:"metricID,omitempty"`
 	MetricAlias            string               `json:"metricAlias,omitempty" yaml:"metricAlias,omitempty"`
 	MetricsValue           string               `json:"metricsValue,omitempty" yaml:"metricsValue,omitempty"`
@@ -128,7 +129,7 @@ type MetricsRuntimeVO struct {
 	MetricsAuthzBoundary   *AuthzBoundaryVO     `json:"metricsAuthzBoundary,omitempty" yaml:"metricsAuthzBoundary,omitempty"`
 	Measures               []MeasureRuntimeVO   `json:"measures,omitempty" yaml:"measures,omitempty"`
 	MetricsTags            map[string]string    `json:"metricsTags,omitempty" yaml:"metricsTags,omitempty"`
-	MetricsReportDate      string               `json:"metricsDate,omitempty" yaml:"metricsDTM,omitempty"`
+	MetricsReportDate      time.Time            `json:"metricsDTM,omitempty" yaml:"metricsDTM,omitempty"`
 	MetricsEvidences       *ProviderArtifactsVO `json:"metricsEvidences,omitempty" yaml:"metricsEvidences,omitempty"`
 	MetricsPolicy          *PolicyVO            `json:"metricsPolicy,omitempty" yaml:"metricsPolicy,omitempty"`
 	MetricsExceptions      []ExceptionVO        `json:"exceptions,omitempty" yaml:"exceptions,omitempty"`
@@ -150,4 +151,10 @@ type ExceptionVO struct {
 	Sequence int           `json:"seq,omitempty" yaml:"seq,omitempty"`
 	Type     ExceptionType `json:"type,omitempty" yaml:"type,omitempty"`
 	Message  string        `json:"message,omitempty" yaml:"message,omitempty"`
+}
+
+type CustomerDomain struct {
+	Domain string `json:"domain,omitempty" yaml:"domain,omitempty"`
+	Org    string `json:"org,omitempty" yaml:"org,omitempty"`
+	Group  string `json:"group,omitempty" yaml:"group,omitempty"`
 }
