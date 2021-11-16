@@ -1,0 +1,19 @@
+FROM golang:1.17.3-alpine3.14 as builder
+MAINTAINER raj.krishnamurthy@continube.com
+COPY go.mod /go/src/camldataservice/
+COPY go.sum /go/src/camldataservice/
+RUN cd /go/src/camldataservice/ && go mod download
+ADD . /  /go/src/camldataservice/
+WORKDIR /go/src/camldataservice
+RUN go mod tidy && \
+    go get -d -v 
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o camldataservice .
+
+FROM alpine:3.14
+RUN apk --no-cache add ca-certificates
+RUN mkdir -p /continube/camldataservice
+WORKDIR /continube/camldataservice
+COPY --from=builder /go/src/camldataservice/ .
+RUN cd /continube/camldataservice && rm *.go
+CMD ["/bin/sh","-c","/continube/camldataservice/camldataservice"]
+

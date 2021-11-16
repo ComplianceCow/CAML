@@ -1,4 +1,4 @@
-package main
+package commonlibs
 
 type ControlsVO struct {
 	Controls []ControlDefinitionVO `json:"controls,omitempty" yaml:"controls,omitempty"`

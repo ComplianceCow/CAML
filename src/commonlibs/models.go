@@ -1,4 +1,12 @@
-package main
+package commonlibs
+
+import "github.com/yugabyte/gocql"
+
+type DBConnection struct {
+	hostName string
+	cluster  *gocql.ClusterConfig
+	session  *gocql.Session
+}
 
 type ControlDefinition struct {
 	*ControlDefinitionVO
