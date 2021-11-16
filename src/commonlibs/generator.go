@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/go-yaml/yaml"
 )
@@ -234,6 +235,9 @@ func GenerateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
 
 	metricsRuntimeVO.MetricID = "AIS-06-M1"
 	metricsRuntimeVO.Measures = make([]MeasureRuntimeVO, 0)
+	metricsRuntimeVO.CustomerDomain.Domain = "continube.com"
+	metricsRuntimeVO.CustomerDomain.Org = "IT"
+	metricsRuntimeVO.CustomerDomain.Group = "security"
 	{
 		measure := MeasureRuntimeVO{}
 		measure.MeasureEvidences = &ProviderArtifactsVO{
@@ -245,7 +249,7 @@ func GenerateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
 		measure.MeasureValue = "90"
 		measure.MesurePeriodStartDate = "10/01/2021"
 		measure.MesurePeriodEndDate = "10/31/2021"
-		measure.MeasureReportDate = "11/05/2021"
+		measure.MeasureReportDate = time.Now()
 		{
 			artifact := ProviderArtifact{}
 			artifact.ArtifactType = Measure_
@@ -269,7 +273,7 @@ func GenerateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
 		measure.MeasureValue = "120"
 		measure.MesurePeriodStartDate = "10/01/2021"
 		measure.MesurePeriodEndDate = "10/31/2021"
-		measure.MeasureReportDate = "11/05/2021"
+		measure.MeasureReportDate = time.Now()
 
 		{
 			artifact := ProviderArtifact{}

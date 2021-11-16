@@ -104,7 +104,7 @@ type ProviderArtifact struct {
 }
 
 type MeasureRuntimeVO struct {
-	CustomerDomain        CustomerDomain       `json:"customer,omitempty" yaml:"customer,omitempty"`
+	CustomerDomain        `json:"customer,omitempty" yaml:"customer,omitempty"`
 	MetricID              string               `json:"metricID,omitempty" yaml:"metricID,omitempty"`
 	MeasureName           string               `json:"measureName,omitempty" yaml:"measureName,omitempty"`
 	MeasureAlias          string               `json:"measureAlias,omitempty" yaml:"measureAlias,omitempty"`
@@ -120,7 +120,7 @@ type MeasureRuntimeVO struct {
 }
 
 type MetricsRuntimeVO struct {
-	CustomerDomain         CustomerDomain       `json:"customer,omitempty" yaml:"customer,omitempty"`
+	CustomerDomain         `json:"customer,omitempty" yaml:"customer,omitempty"`
 	MetricID               string               `json:"metricID,omitempty" yaml:"metricID,omitempty"`
 	MetricAlias            string               `json:"metricAlias,omitempty" yaml:"metricAlias,omitempty"`
 	MetricsValue           string               `json:"metricsValue,omitempty" yaml:"metricsValue,omitempty"`
