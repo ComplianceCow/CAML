@@ -1,4 +1,4 @@
-package main
+package commonlibs
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 )
 
-func (controlsVO *ControlsVO) loadControlsData(fileName string, fileType string) (err error) {
+func (controlsVO *ControlsVO) LoadControlsData(fileName string, fileType string) (err error) {
 
 	fileByteArray, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -26,7 +26,7 @@ func (controlsVO *ControlsVO) loadControlsData(fileName string, fileType string)
 	return nil
 }
 
-func (metricsVO *MetricsVO) loadMetricsData(fileName string, fileType string) (err error) {
+func (metricsVO *MetricsVO) LoadMetricsData(fileName string, fileType string) (err error) {
 
 	fileByteArray, err := ioutil.ReadFile(fileName)
 	if err != nil {

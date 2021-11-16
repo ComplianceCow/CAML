@@ -1,4 +1,4 @@
-package main
+package commonlibs
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/go-yaml/yaml"
 )
 
-func generateControlsData() (controlsVO ControlsVO, err error) {
+func GenerateControlsData() (controlsVO ControlsVO, err error) {
 
 	ccmControls := make([]ControlDefinitionVO, 0)
 
@@ -48,7 +48,7 @@ func generateControlsData() (controlsVO ControlsVO, err error) {
 	return controlsVO, nil
 }
 
-func generateMetricsData() (metricsVO MetricsVO, err error) {
+func GenerateMetricsData() (metricsVO MetricsVO, err error) {
 
 	metrics := make([]MetricDefinitionVO, 0)
 
@@ -109,7 +109,7 @@ func generateMetricsData() (metricsVO MetricsVO, err error) {
 	return metricsVO, nil
 }
 
-func generateMetricsConfiguration() (metricsVO MetricsVO, err error) {
+func GenerateMetricsConfiguration() (metricsVO MetricsVO, err error) {
 
 	metrics := make([]MetricDefinitionVO, 0)
 
@@ -218,7 +218,7 @@ func generateMetricsConfiguration() (metricsVO MetricsVO, err error) {
 	return metricsVO, nil
 }
 
-func generateProcessorConfiguration() (providerVO ProviderVO, err error) {
+func GenerateProcessorConfiguration() (providerVO ProviderVO, err error) {
 
 	providerVO.ProviderName = "compliancecow"
 	providerVO.ProviderURL = "https://dev.compliancecow.live/api/v1/login"
@@ -230,7 +230,7 @@ func generateProcessorConfiguration() (providerVO ProviderVO, err error) {
 
 }
 
-func generateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
+func GenerateMetricsRuntime() (metricsRuntimeVO MetricsRuntimeVO, err error) {
 
 	metricsRuntimeVO.MetricID = "AIS-06-M1"
 	metricsRuntimeVO.Measures = make([]MeasureRuntimeVO, 0)
