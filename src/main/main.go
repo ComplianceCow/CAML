@@ -3,9 +3,8 @@ package main
 import libs "commonlibs"
 
 func main() {
-	// generateSampleData()
-	// loadFileData()
-	// ybDemo()
-	libs.DataDemo()
+	libs.GenerateSampleData()
+	// libs.LoadFileData()
+	// libs.DataDemo()
 
 }

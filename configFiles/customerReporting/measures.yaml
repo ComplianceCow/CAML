@@ -1,4 +1,31 @@
 metricID: AIS-06-M1
+customer:
+  domain: continube.com
+  org: IT
+  group: security
+measures:
+- measureName: prod_apps_with_verification
+  measureAlias: A
+  measureValue: "90"
+  measureStartDt: 10/01/2021
+  measureEndDt: 10/31/2021
+  measureDTM: !!timestamp 2021-11-16T09:30:57.561191554-08:00
+  measureEvidences:
+    artifacts:
+    - artifactType: 1
+      artifactURL: https://dev.compliancecow.live/measures/ais06m1/files/7117758f-b14a-4784-822d-44383f17180b/security_test_coverage.csv
+      artifactStatus: 3
+- measureName: prod_apps_deployed
+  measureAlias: B
+  measureValue: "120"
+  measureStartDt: 10/01/2021
+  measureEndDt: 10/31/2021
+  measureDTM: !!timestamp 2021-11-16T09:30:57.561200785-08:00
+  measureEvidences:
+    artifacts:
+    - artifactType: 1
+      artifactURL: https://dev.compliancecow.live/measures/ais06m1/files/7baadd77-fa4e-49f6-8945-464c969358df/inventory_pmt_apps.csv
+      artifactStatus: 3
 metricsAuthzBoundary:
   authozBoundaryName: composite payment processing apps
   authzBoundaryAlias: pmt
@@ -14,26 +41,3 @@ metricsAuthzBoundary:
         in json format
       artifactType: 4
       artifactURL: https://dev.compliancecow.live/apps/app-01?format=yaml
-measures:
-- measureName: prod_apps_with_verification
-  measureAlias: A
-  measureValue: "90"
-  measureStartDt: 10/01/2021
-  measureEndDt: 10/31/2021
-  measureDTM: 11/05/2021
-  measureEvidences:
-    artifacts:
-    - artifactType: 1
-      artifactURL: https://dev.compliancecow.live/measures/ais06m1/files/7117758f-b14a-4784-822d-44383f17180b/security_test_coverage.csv
-      artifactStatus: 3
-- measureName: prod_apps_deployed
-  measureAlias: B
-  measureValue: "120"
-  measureStartDt: 10/01/2021
-  measureEndDt: 10/31/2021
-  measureDTM: 11/05/2021
-  measureEvidences:
-    artifacts:
-    - artifactType: 1
-      artifactURL: https://dev.compliancecow.live/measures/ais06m1/files/7baadd77-fa4e-49f6-8945-464c969358df/inventory_pmt_apps.csv
-      artifactStatus: 3
