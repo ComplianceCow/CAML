@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  yb-standalone:
+      image: yugabytedb/yugabyte:latest
+      logging: 
+        driver: "json-file"
+        options:
+          max-file: "5"
+          max-size: "10m"
+      container_name: yb-standalone
+      volumes:
+      - "${HOME}/tmp/yb_data:/home/yugabyte/yb_data"
+      command: sh -c "/home/yugabyte/bin/yugabyted start --base_dir=/home/yugabyte/yb_data --daemon=false --ui=false"
+      ports:
+      - "7000:7000"
+      - "9000:9000"
+      - "5433:5433"
+      - "9042:9042"
+
+# TODO: how necessary are these network configs? 
+#      networks:
+#          internal:
+#           aliases:
+#            - yb-standalone
+#          default:
+#           aliases:
+#            - yb-standalone
+  caml_dev:
+      image: caml_dev
+      container_name: caml_dev
+      volumes:
+        - "../src/:/go/src/volume.caml"
+      tty: true
+#networks:
+#  default:
+#    external:
+#       name: caml_default
+#  internal:
+#    external:
+#      name: caml_internal
+volumes:
+  yb-master-data-1:
+  yb-tserver-data-1:
+

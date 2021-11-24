@@ -1,0 +1,30 @@
+# this dockerfile establishes a single build/run environment for
+# all the elements of CAML source distribution. For simplicity this
+# is a single environment for /src stuff.  
+
+# go being the lingua in question we start with a golang image so 
+# supporting dev work in place is easy
+FROM golang as prepit
+
+# moving this all up to be run from the root directory so that all the source and data can be 
+# moved to the docker image as needed
+# the alternative would be the dev approach of mounting all the source into the container
+# but what is our goal here? a working image or a dev environment? I guess we're going for a working image
+
+ADD src/commonlibs  /go/src/added.caml/commonlibs
+ADD src/main        /go/src/added.caml/main
+
+ADD configFiles     /go/src/added.caml/configFiles
+# TODO: config files are hardcoded into main.go; should 
+# TODO: consider fixing that but an easy hack is to put a copy
+# TODO: here for the moment
+ADD configFiles     /go/src/configFiles
+
+FROM prepit as buildit 
+WORKDIR /go/src/added.caml/main
+RUN go mod download
+RUN go mod tidy -compat=1.17 && \
+    go get -d -v 
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o camldataservice .
+
+WORKDIR /go/src
