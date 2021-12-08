@@ -40,50 +40,53 @@ Continuous Audit Metrics Library
 
 1. clone the repo and all that
 2. have docker installed
+3. use docker compose to instantiate the cluster
 
-3. the dev/runtime environment is defined by /docker/dockerfile
+    ```
+    docker compose -f Docker/docker-compose.caml_dev.yaml up -d
+    ```
 
-    Build a docker image from the root of the cloned repository
+    The docker-compose file runs both the YugabyteDB and the caml_dev images. 
+    
+    The caml_dev images is configured as specified in Dockerfile.caml_dev. This includes cloneing a copy of the repository into the image for in image development. What you need to do is **tell docker-compose which repository to use**. There are two options: 
+        1. the **docker-compose command automatically used the value in the .env file** located in the same directory. This file is provided and specifies the main CAML repository on github. You can of course change this to any fork you are developing on. 
+        2. You could specify the value on the command line when launching docker compose: 
+        ```
+        gitrepo=http://github.com/continube/CAML  docker compose -f Docker/docker-compose.caml_dev.yaml up -d
+        ```
+        Docker's environment/.env variable behavior is super overloaded. see https://docs.docker.com/compose/compose-file/compose-file-v3/#env_file as a starting point if you have trouble. 
+ <br>       
+    _3.5_ OPTIONAL: the compose file references the Docker/Dockerfile.caml_dev which you _could_ also build on its own.
+    * Build a docker image from the root of the cloned repository
     ```
-    docker build -f Docker/Dockerfile.caml_dev -t caml_dev .
+    docker build -f Docker/Dockerfile.caml_dev -t caml_dev_manual --build-arg gitrepo=https://github.com/continube/CAML.git .
     ```
-    The dockerfile does an **ADD** to insert a **copy of the source** and builds an image you can run it and look around. The source that has been ADDed is in 'added.caml' so:
+    * You can explore directly with:
     ```
-        docker run -it --rm caml_dev
-        cd added.caml/main
+        docker run -it --rm caml_dev_manual
+        cd CAML/src/main
         ./camldataservice 
     ```
-    or just:
+    or:
     ```
-        docker run -it --rm caml_dev added.caml/main/camldataservice
+        docker run -it --rm caml_dev_manual CAML/main/camldataservice
     ```
-    You could do some development right now. But the root image doesn't have editors and etc. So you'd be doing dev in a less than ideal environment. Also the supplimental containers for the database and etc aren't running yet. Lets keep going: 
-
-4. use docker compose to instantiate the cluster
-
-    ```
-    docker compose -f Docker/docker-compose.caml_dev.yaml up
-    ```
-
-    The docker-compose file runs both the YugabyteDB and the caml_dev images. When running caml_dev it mounts "../src/:/go/src/volume.caml" (relative path from the docker-compose.yaml file). This results in /go/src/volume.caml existing in the container. This is a mount of the current source directory structure. 
-    
-    Now you can use any local editors as you wish. 
-
-    But you still need to build and run within the limited environment of the caml_dev container. To do real development you ...
-    * TODO option 0: do the build steps shown in Dockerfile.caml_dev to verify build works
-        ```
+ 
+ 5.  OPTIONAL: Do development in the container.
+ * **Seems best**: use a toolchain like vscode. you can attach to the container and do development that way. vscode can handle most of this for you: in the vscode UI:
+    * "attach to running container" (select caml_dev)
+    * "install all" at the vscode prompts for go-outline and gopls 
+    * re-evaluate your security brain: did you really just install all from some random vscode pointed respositories? 
+    * anyway, now you can run and debug main.go w/ breakpoints and stuff 
+    * because this is a cloned git repository vscode can handle all the git operations to commit changes. The first time you try this it will walk you through getting authorization credentials for vscode. 
+ * **Simplest test**: Do the build steps shown in Dockerfile.caml_dev to verify build work
+    ```    
         cd /go/src/volume.caml/main
         go mod download
         go mod tidy -compat=1.17 && go get -d -v
         CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o camldataservice .
-        ```
-    * TODO option 1: add to the dockerfile necessary commands to install a debug environment w/in the container etc
-    * TODO option 2: use a toolchain like vscode. you can attach to the container and do development that way. vscode can handle most of this for you: in the vscode UI:
-        * "attach to running container" (select caml_dev)
-        * "install all" at the vscode prompts for go-outline and gopls 
-        * re-evaluate your security brain: did you really just install all from some random vscode pointed respositories? 
-        * anyway, now you can run and debug main.go w/ breakpoints and stuff 
-    * TODO whatever else you want
+    ```
+* TODO: whatever else you want. Like you could, add to the dockerfile necessary commands to install a debug environment w/in the container etc. Basically do it all manually.
 
 
 ## References

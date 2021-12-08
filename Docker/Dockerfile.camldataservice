@@ -1,3 +1,6 @@
+
+# TODO: this is working notes (a template). It can now be removed.
+
 FROM golang:1.17.3-alpine3.14 as builder
 MAINTAINER raj.krishnamurthy@continube.com
 COPY go.mod /go/src/camldataservice/
