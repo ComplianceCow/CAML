@@ -10,7 +10,7 @@ var metricsVO *libs.MetricsVO
 
 func main() {
 
-	// libs.GenerateSampleData()
+	libs.GenerateSampleData()
 	// libs.LoadFileData()
 	// libs.DataDemo()
 
