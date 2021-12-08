@@ -50,11 +50,11 @@ Continuous Audit Metrics Library
     
     The caml_dev images is configured as specified in Dockerfile.caml_dev. This includes cloneing a copy of the repository into the image for in image development. What you need to do is **tell docker-compose which repository to use**. There are two options: 
         1. the **docker-compose command automatically used the value in the .env file** located in the same directory. This file is provided and specifies the main CAML repository on github. You can of course change this to any fork you are developing on. 
-        2. You could specify the value on the command line when launching docker compose: 
+        2. You could specify the value on the command line when launching docker compose to quickly indicate your forked respository: 
         ```
-        gitrepo=http://github.com/continube/CAML  docker compose -f Docker/docker-compose.caml_dev.yaml up -d
-        ```
-        Docker's environment/.env variable behavior is super overloaded. see https://docs.docker.com/compose/compose-file/compose-file-v3/#env_file as a starting point if you have trouble. 
+        GITREPO=http://github.com/yourusername/CAML  docker compose -f Docker/docker-compose.caml_dev.yaml up -d
+        ```        
+        (NOTE: Docker's environment/.env variable behavior is super overloaded. see https://docs.docker.com/compose/compose-file/compose-file-v3/#env_file as a starting point if you have trouble. An environment variable specified on the command line like this should overload whats in the .env file)
  <br>       
     _3.5_ OPTIONAL: the compose file references the Docker/Dockerfile.caml_dev which you _could_ also build on its own.
     * Build a docker image from the root of the cloned repository
