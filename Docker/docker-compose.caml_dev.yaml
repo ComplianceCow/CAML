@@ -1,5 +1,7 @@
 version: "3.8"
+
 services:
+  # yb-standalone is the db used for measures and metrics
   yb-standalone:
       image: yugabytedb/yugabyte:latest
       logging: 
@@ -11,25 +13,30 @@ services:
       volumes:
       - "${HOME}/tmp/yb_data:/home/yugabyte/yb_data"
       command: sh -c "/home/yugabyte/bin/yugabyted start --base_dir=/home/yugabyte/yb_data --daemon=false --ui=false"
+      # The local ports are assigned dynamically. If you want to set them for your environment use "7000:7000" (or "70001:7000" etc)
       ports:
-      - "7000:7000"
-      - "9000:9000"
-      - "5433:5433"
-      - "9042:9042"
+      - ":7000"
+      - ":9000"
+      - ":5433"
+      - ":9042"
 
-# TODO: how necessary are these network configs? 
-#      networks:
-#          internal:
-#           aliases:
-#            - yb-standalone
-#          default:
-#           aliases:
-#            - yb-standalone
+  # caml_dev is a working development/test environment
   caml_dev:
+      # TODO: explore is env_file is the best way to setup CLI git toolchain
+      # modify this file to pass environment variables into the container
+      # env_file: ../../github.env
+      build:
+        context: .
+        dockerfile: Dockerfile.caml_dev
+        # the $GITREPO value is coming from .env located in the same
+        # directory as this yaml file. It will look something like (make it point to your fork): 
+        #   prompt% cat Docker/.env
+        #   GITREPO=https://github.com/ContiNube/CAML.git
+        # TODO: see about explicitly indicating this file instead of depending on the hidden dot file "sideeffect" 
+        args:
+          - gitrepo=$GITREPO
       image: caml_dev
       container_name: caml_dev
-      volumes:
-        - "../src/:/go/src/volume.caml"
       tty: true
 #networks:
 #  default:

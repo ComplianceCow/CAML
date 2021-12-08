@@ -6,22 +6,27 @@
 # supporting dev work in place is easy
 FROM golang as prepit
 
-# moving this all up to be run from the root directory so that all the source and data can be 
-# moved to the docker image as needed
-# the alternative would be the dev approach of mounting all the source into the container
-# but what is our goal here? a working image or a dev environment? I guess we're going for a working image
+# build a working image by installing git tooling and cloning the repo
+RUN apt-get update
+RUN apt-get install -y git
+WORKDIR /go/src
+# $gitrepo needs to be passed in as a --build-arg 
+# or set via docker-compose.caml_dev.yaml
+ARG gitrepo
+RUN git clone $gitrepo
 
-ADD src/commonlibs  /go/src/added.caml/commonlibs
-ADD src/main        /go/src/added.caml/main
 
-ADD configFiles     /go/src/added.caml/configFiles
-# TODO: config files are hardcoded into main.go; should 
-# TODO: consider fixing that but an easy hack is to put a copy
-# TODO: here for the moment
-ADD configFiles     /go/src/configFiles
+# at this point a developer can attach vscode to the dev image and work with it directly
+# to do so:
+#       - attach vscode to the running image
+#       - follow the prompts to install their dev environment stuff (for building and debugging)
+#       - when you first try to commit changes it will walk you through obtaining authorization tokens
+#         at the vscode level to enable a push.
+# TODO: explore gitlens extention 
+# TODO: explore ensuring CLI git is configured automatically. because git is installed as per the above it works but you'll be forced to put your authorization token into the container which is not recommended. Better to just use the vscode model if thats an option.
 
 FROM prepit as buildit 
-WORKDIR /go/src/added.caml/main
+WORKDIR /go/src/CAML/src/main
 RUN go mod download
 RUN go mod tidy -compat=1.17 && \
     go get -d -v 
