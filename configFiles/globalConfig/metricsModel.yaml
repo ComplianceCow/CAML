@@ -41,3 +41,23 @@ metrics:
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
+- metricID: AIS-07-M6
+  measures:
+  - measureName: nc_vuln_remediation_in_prod_apps
+    measureAlias: A
+    measureDescription: Number of unaccepted critical or high vulnerabilities in production applications with an age greater than the policy defined maximum age
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: risky_vulns_in_prod_apps
+    measureAlias: B
+    measureDescription: Total number of critical or high vulnerabilities in production applications within this period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
