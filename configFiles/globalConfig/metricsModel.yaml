@@ -61,3 +61,103 @@ metrics:
   metricSLORecommendations:
   - sloRangeMin: 
     sloPeriod: 30d
+- metricID: BCR-06-M1
+  measures:
+  - measureName: bcr_tests_critical_systems
+    measureAlias: A
+    measureDescription: Number of critical systems that passed BCR tests during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 365d
+  - measureName: critical_systems_count
+    measureAlias: B
+    measureDescription: Total number of critical systems operating during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 365d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 365d
+  metricFrequency: 0 0 1 1 *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 365
+- metricID: CCC-03-M1
+  measures:
+  - measureName: assets_under_change_management
+    measureAlias: A
+    measureDescription: Number of assets that have change management technology integrated
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: total_assets_count
+    measureAlias: B
+    measureDescription: Total number of assets
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 30d
+ - metricID: CCC-07-M1
+  measures:
+  - measureName: config_items_passing_tests
+    measureAlias: A
+    measureDescription: Number of configuration items that were tested and passed successfully
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  - measureName: total_config_items
+    measureAlias: B
+    measureDescription: Total number of configuration items that were tested
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 7d
+  metricFrequency: 0 0 * * 0
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+- metricID: CEK-03-M2
+  measures:
+  - measureName: acvp_approved_data_assets
+    measureAlias: A
+    measureDescription: Number of assets responsible for data at-rest or in-transit where the cryptographic library has passed Automated Cryptographic Validation Protocol tests or equivalent tests
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: data_at_rest_in_transit_assets
+    measureAlias: B
+    measureDescription: Total number of assets responsible for data at-rest or in-transit
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 85%
+    sloPeriod: 30d
+- metricID: CEK-04-M1
+  measures:
+  - measureName: compliant_crypto_assets
+    measureAlias: A
+    measureDescription: Number of assets with a cryptographic function that meets cryptographic requirements
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: total_crypto_assets
+    measureAlias: B
+    measureDescription: Total number of assets with a cryptographic function
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
