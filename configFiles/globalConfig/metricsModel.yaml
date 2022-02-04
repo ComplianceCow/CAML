@@ -161,3 +161,517 @@ metrics:
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
+- metricID: DCS-06-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Number of distinct assets seen in security audit logs during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+- metricID: DSP-04-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Total number of data records classified by type and/or sensitivity
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of data records stored
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+- metricID: DSP-04-M3
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of assets in the organization's asset catalog
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+- metricID: DSP-05-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of data records or data stores in the CCMv4 DSP-03 inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 15d
+  metricFrequency: 0 0 1,15 * *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+- metricID: DSP-05-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of data streams in the CCMv4 DSP-03 inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 15d
+  metricFrequency: 0 0 1,15 * *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+- metricID: GRC-04-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of active policy exceptions, during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
+- metricID: IAM-07-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of terminated users deprovisioned within policy guidelines during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of terminated users during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+- metricID: IAM-08-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of accounts reviewed with correct access in the Last 90 Days
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of Accounts 
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+- metricID: IAM-09-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of users with admin access to more than one of the following capabilities: production data management, encryption and key management, or logging
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Number of users with access to production data management, encryption and key management, or logging capabilities
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+- metricID: IPY-03-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Count of data flows that use an approved, standardized cryptographic security function
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1h
+  - measureName: 
+    measureAlias: B
+    measureDescription: Count of all data flows
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1h
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1h
+  metricFrequency: 0 * * * *
+  metricSLORecommendations:
+  - sloRangeMin: 99.99%
+    sloPeriod: 1h
+- metricID: IVS-04-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of production assets that are in compliance with hardening baseline
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of production assets
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 99.99%
+    sloPeriod: 1d
+- metricID: LOG-03-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of Log Sources with Security Alerts configured
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total Number of Log Sources
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+- metricID: LOG-05-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of anomalies detected during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+- metricID: LOG-10-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of metrics reported in the CCMv4 CEK domain
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of controls in the CCMv4 CEK domain
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 15d
+  metricFrequency: 0 0 1,15 * *
+  metricSLORecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+- metricID: LOG-13-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of minutes of uptime during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Duration of the sampling period in minutes
+    measureUnit: 
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+- metricID: SEF-05-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of security events sourced from automated systems during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of security events that were recorded during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
+- metricID: SEF-06-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of security events triaged within policy defined time limit, during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of security events Logged, during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 7d
+  metricFrequency: 0 0 * * 0
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 7d
+- metricID: SEF-06-M2
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Slope of the linear regression for triage times over the sampling period
+    measureUnit: 
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
+- metricID: STA-07-M3
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Total number of third-party software components seen during the sampling period, which are from authorized providers
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of third-party software components seen during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 15d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 15d
+  metricFrequency: 0 0 1,15 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99.9%
+    sloPeriod: 15d
+- metricID: STA-07-M5
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Total number of unique providers with observed connections
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total Number of Unique Providers in the inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 1d
+  metricFrequency: 0 0 1,15 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+- metricID: TVM-03-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total Number of High and Critical Vulnerabilities identified during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 7d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 7d
+  metricFrequency: 0 0 * * 0
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 7d
+- metricID: TVM-07-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of assets from the asset catalog scanned during the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of assets in the asset catalog
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+- metricID: TVM-10-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of high and critical vulnerabilities identified for remediation within policy timeframes
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total Number of high and critical vulnerabilities identified or carried over into the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
+- metricID: UEM-04-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of endpoints that exist in both the audit log and asset inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: The total number of endpoints in the asset inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+- metricID: UEM-05-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of endpoints in the asset inventory
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 1d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 
+  metricFrequency: 0 0 * * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+- metricID: UEM-09-M1
+  measures:
+  - measureName: 
+    measureAlias: A
+    measureDescription: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  - measureName: 
+    measureAlias: B
+    measureDescription: Total number of managed endpoints for the workforce initiating observed connections
+    measureUnit: count
+    measureType: calculate
+    measurePeriod: 30d
+  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricPeriod: 30d
+  metricFrequency: 0 5 */30 * *
+  metricSLORecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
