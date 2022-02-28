@@ -10,7 +10,7 @@ Continuous Audit Metrics Library
 Using docker compose:
 
 ```
-docker compose -f Docker/docker-compose.caml_dev.yaml up -d
+docker compose -p caml_dev -f Docker/docker-compose.caml_dev.yaml up -d
 ```
 
 The docker-compose file runs both the YugabyteDB and the caml_dev images. 
