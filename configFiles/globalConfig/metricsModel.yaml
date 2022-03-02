@@ -14,7 +14,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -35,7 +35,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -55,7 +55,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -75,7 +75,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 365d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 365d
   metricFrequency: 0 0 1 1 *
   metricSLORecommendations:
@@ -95,7 +95,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -115,7 +115,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 7d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 0 0 * * 0
   metricSLORecommendations:
@@ -135,7 +135,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -155,7 +155,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -175,7 +175,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -195,7 +195,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod:
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -215,7 +215,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -235,7 +235,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 15d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 0 0 1,15 * *
   metricSLORecommendations:
@@ -255,7 +255,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 15d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 0 0 1,15 * *
   metricSLORecommendations:
@@ -275,7 +275,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -295,7 +295,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -315,7 +315,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -335,7 +335,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '((1-(A/B))*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -355,7 +355,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1h
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1h
   metricFrequency: 0 * * * *
   metricSLORecommendations:
@@ -375,7 +375,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -395,7 +395,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -415,7 +415,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -435,7 +435,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 15d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 0 0 1,15 * *
   metricSLORecommendations:
@@ -455,7 +455,7 @@ metrics:
     measureUnit:
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -475,7 +475,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -495,7 +495,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 7d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 0 0 * * 0
   metricSLORecommendations:
@@ -509,7 +509,7 @@ metrics:
     measureUnit:
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}*100)'
+  metricFormula: 'A*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -529,7 +529,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 15d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 0 0 1,15 * *
   metricSLORecommendations:
@@ -549,7 +549,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 0 0 1,15 * *
   metricSLORecommendations:
@@ -569,7 +569,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 7d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 0 0 * * 0
   metricSLORecommendations:
@@ -589,7 +589,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -609,7 +609,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -629,7 +629,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
@@ -649,7 +649,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 1d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod:
   metricFrequency: 0 0 * * *
   metricSLORecommendations:
@@ -669,7 +669,7 @@ metrics:
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
-  metricFormula: '%v%%,({{A}}/{{B}*100)'
+  metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 0 5 */30 * *
   metricSLORecommendations:
