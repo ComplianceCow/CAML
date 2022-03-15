@@ -29,11 +29,12 @@ GITREPO=http://github.com/yourusername/CAML  docker compose -f Docker/docker-com
 ## Explore!
 
 To help get things going an instance of prometheus and grafana are installed. The way this works is:
-    * that caml_dev does its best to collect (or generate test data) and compute some example metrics
-        * the test data is silly. it creates metrics like every second or two. very silly. but visible. 
-    * the example metrics are placed where node_exporter can make them available to prometheus
-    * prometheus stores the values in a time series database. The UI page for prometheus offers some very simple graph methods and ability to explore. 
-    * grafana provides a much more complete dashboarding. A dashboard for current metrics is automatically provisioned. 
+
+* that caml_dev does its best to collect (or generate test data) and compute some example metrics
+  * the test data is silly. it creates metrics like every second or two. very silly. but visible. 
+* the example metrics are placed where node_exporter can make them available to prometheus
+* prometheus stores the values in a time series database. The UI page for prometheus offers some very simple graph methods and ability to explore. 
+* grafana provides a much more complete dashboarding. A dashboard for current metrics is automatically provisioned. 
 
 ### Join us! Develop a cool feature
 * **Seems best**: use a toolchain like vscode. you can attach to the container and do development that way. vscode can handle most of this for you: in the vscode UI:
