@@ -10,7 +10,8 @@ var metricsVO *libs.MetricsVO
 
 func main() {
 
-	libs.GenerateSampleData()
+	//libs.GenerateSampleData()
+	libs.GeneratePomMetrics(metricsVO)
 	// libs.LoadFileData()
 	// libs.DataDemo()
 
@@ -24,8 +25,8 @@ func init() {
 	}
 
 	metricsVO = new(libs.MetricsVO)
-	metricsFile := "../../configFiles/globalConfig/metrics.json"
-	if err := metricsVO.LoadMetricsData(metricsFile, "json"); err != nil {
+	metricsFile := "../../configFiles/globalConfig/metricsModel.yaml"
+	if err := metricsVO.LoadMetricsData(metricsFile, "yaml"); err != nil {
 		log.Printf("%s", err)
 	}
 
