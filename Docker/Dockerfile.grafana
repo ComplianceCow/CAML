@@ -1,0 +1,9 @@
+# this dockerfile configures a simple grafana service
+
+FROM grafana/grafana-oss
+
+# configure to scrape from prometheus (as a datasource)
+COPY grafana_prometheus_datasource.yml /etc/grafana/provisioning/datasources/prometheus_datasource.yml
+# configure dashboards
+COPY grafana_csadashboards.yml /etc/grafana/provisioning/dashboards/csadashboards.yml
+COPY grafana_csadashboards.json /etc/grafana/provisioning/dashboards/csadashboards.json
