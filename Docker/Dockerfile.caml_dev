@@ -9,6 +9,7 @@ FROM golang as prepit
 # build a working image by installing git tooling and cloning the repo
 RUN apt-get update
 RUN apt-get install -y git
+RUN apt-get install -y yamllint
 WORKDIR /go/src
 # $gitrepo needs to be passed in as a --build-arg 
 # or set via docker-compose.caml_dev.yaml
@@ -25,11 +26,25 @@ RUN git clone $gitrepo
 # TODO: explore gitlens extention 
 # TODO: explore ensuring CLI git is configured automatically. because git is installed as per the above it works but you'll be forced to put your authorization token into the container which is not recommended. Better to just use the vscode model if thats an option.
 
-FROM prepit as buildit 
+FROM prepit as buildit
+
+# CAML toolchain
 WORKDIR /go/src/CAML/src/main
 RUN go mod download
 RUN go mod tidy -compat=1.17 && \
     go get -d -v 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o camldataservice .
 
+# in order to integrate with openmetrics/prometheus 
+# install prometheus node_collector
+# NOTE: node_collector's primary purpose is collecting information about the 'node'/instance. We're not using it for that. Instead we're leveraging https://github.com/prometheus/node_exporter/blob/master/README.md#textfile-collector 
+# TODO: no attempt was made here to keep the resulting image small. that should be done. 
 WORKDIR /go/src
+RUN git clone https://github.com/prometheus/node_exporter
+WORKDIR /go/src/node_exporter
+RUN make
+
+WORKDIR /go/src
+COPY caml_dev_wrapper_script.sh caml_dev_wrapper_script.sh
+RUN ["chmod", "+x", "caml_dev_wrapper_script.sh"]
+CMD ./caml_dev_wrapper_script.sh
