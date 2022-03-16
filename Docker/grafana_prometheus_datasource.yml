@@ -1,0 +1,12 @@
+# grafana/provisioning/datasources/prometheus_datasource.yml
+# NOTE: 2s interval is silly. Its handy for testing though. 
+apiVersion: 1
+ 
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    editable: true
+    jsonData:
+      timeInterval: 2s

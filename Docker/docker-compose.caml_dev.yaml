@@ -20,6 +20,30 @@ services:
       - ":5433"
       - ":9042"
 
+  # metric TBSD
+  prometheus:
+    # https://prometheus.io/docs/prometheus/latest/installation/
+    image: prom/prometheus
+    container_name: prometheus
+    build:
+      context: .
+      dockerfile: Dockerfile.prometheus
+    ports: 
+    - "9090:9090"
+    # TODO: The Prometheus image uses a volume to store the actual metrics. For production deployments it is highly recommended to use a named volume to ease managing the data on Prometheus upgrades.
+
+
+  grafana: 
+    # https://grafana.com/docs/grafana/latest/installation/docker/
+    # NOTE: When running Grafana main in production, we strongly recommend that you use the grafana/grafana-oss-dev:<version>-<build ID>pre tag.
+    image: grafana/grafana-oss
+    container_name: grafana-oss
+    build:
+      context: .
+      dockerfile: Dockerfile.grafana
+    ports: 
+    - "3000:3000"
+
   # caml_dev is a working development/test environment
   caml_dev:
       # TODO: explore is env_file is the best way to setup CLI git toolchain
@@ -38,6 +62,8 @@ services:
       image: caml_dev
       container_name: caml_dev
       tty: true
+      ports: 
+      - "9100"
 #networks:
 #  default:
 #    external:

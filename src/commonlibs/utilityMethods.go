@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
+	"github.com/go-yaml/yaml"
 )
 
 func (controlsVO *ControlsVO) LoadControlsData(fileName string, fileType string) (err error) {
@@ -39,9 +41,11 @@ func (metricsVO *MetricsVO) LoadMetricsData(fileName string, fileType string) (e
 			return fmt.Errorf("cannot unmarshal json file: %s", err)
 		}
 	case "yaml":
+		if err = yaml.Unmarshal(fileByteArray, metricsVO); err != nil {
+			return fmt.Errorf("cannot unmarshal yaml file: %s", err)
+		}
 	default:
 		return fmt.Errorf("specify a valid file type")
-
 	}
 	return nil
 }

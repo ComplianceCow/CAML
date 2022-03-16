@@ -1,0 +1,6 @@
+# this dockerfile configures a simple prometheus service
+
+FROM prom/prometheus
+
+# configure to scrape from caml_dev
+COPY prometheus.yml /etc/prometheus/prometheus.yml

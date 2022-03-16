@@ -16,7 +16,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -37,7 +38,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
@@ -57,7 +59,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -77,7 +80,8 @@ metrics:
     measurePeriod: 365d
   metricFormula: '(A/B)*100'
   metricPeriod: 365d
-  metricFrequency: 0 0 1 1 *
+  metricFrequency: 365d
+  metricChrontabExample: 0 0 1 1 *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 365
@@ -97,7 +101,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
@@ -117,7 +122,8 @@ metrics:
     measurePeriod: 7d
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
-  metricFrequency: 0 0 * * 0
+  metricFrequency: 7d
+  metricChrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -137,7 +143,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 85%
     sloPeriod: 30d
@@ -157,7 +164,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -177,7 +185,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -196,8 +205,8 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
-  metricPeriod:
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -217,7 +226,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -237,7 +247,8 @@ metrics:
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
-  metricFrequency: 0 0 1,15 * *
+  metricFrequency: 15d
+  metricChrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -257,7 +268,8 @@ metrics:
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
-  metricFrequency: 0 0 1,15 * *
+  metricFrequency: 15d
+  metricChrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -277,7 +289,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -297,7 +310,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -317,7 +331,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -337,7 +352,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '((1-(A/B))*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -357,7 +373,8 @@ metrics:
     measurePeriod: 1h
   metricFormula: '(A/B)*100'
   metricPeriod: 1h
-  metricFrequency: 0 * * * *
+  metricFrequency: 1h
+  metricChrontabExample: 0 * * * *
   metricSLORecommendations:
   - sloRangeMin: 99.99%
     sloPeriod: 1h
@@ -377,7 +394,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99.99%
     sloPeriod: 1d
@@ -397,7 +415,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -417,7 +436,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -437,7 +457,8 @@ metrics:
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
-  metricFrequency: 0 0 1,15 * *
+  metricFrequency: 15d
+  metricChrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -457,7 +478,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 * * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -477,7 +499,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -497,7 +520,8 @@ metrics:
     measurePeriod: 7d
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
-  metricFrequency: 0 0 * * 0
+  metricFrequency: 7d
+  metricChrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 7d
@@ -511,7 +535,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: 'A*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -531,7 +556,8 @@ metrics:
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
-  metricFrequency: 0 0 1,15 * *
+  metricFrequency: 15d
+  metricChrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 99.9%
     sloPeriod: 15d
@@ -551,7 +577,8 @@ metrics:
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
-  metricFrequency: 0 0 1,15 * *
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -571,7 +598,8 @@ metrics:
     measurePeriod: 7d
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
-  metricFrequency: 0 0 * * 0
+  metricFrequency: 7d
+  metricChrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 7d
@@ -591,7 +619,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -611,7 +640,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -631,7 +661,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -650,8 +681,9 @@ metrics:
     measureType: calculate
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
-  metricPeriod:
-  metricFrequency: 0 0 * * *
+  metricPeriod: 1d
+  metricFrequency: 1d
+  metricChrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -671,7 +703,8 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
-  metricFrequency: 0 5 */30 * *
+  metricFrequency: 30d
+  metricChrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
