@@ -1,10 +1,14 @@
 metrics:
 - metricID: AIS-06-M1
+  primaryControlID: AIS-06
+  relatedControlID:
+    - DCS-06
+    - GRC-05
+  metricDescription: This metric measures the percentage of running production code that can be directly traced back to automated security and quality tests that verify the compliance of each build.
   measures:
   - measureName: prod_apps_with_verification
     measureAlias: A
-    measureDescription: Total number of pieces of Production Code that have an Associated
-      Verification Step
+    measureDescription: Total number of pieces of Production Code that have an Associated Verification Step
     measureUnit: count
     measureType: calculate
     measurePeriod: 30d
@@ -15,12 +19,14 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: ""Production Code"" is code deployed to the production runtime environment(s) within the scope of the Information Security Program defined in the CCMv4 GRC-05 control objective. An ""Associated Verification Step"" is a capability in the deployment process that ties production code back to a build with traceable results for quality, security, and privacy tests.
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
+  implementationGuidelines: There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of ""deployed production code"" used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric "Percentage of steps in the Software Deployment Pipeline that have an associated verification step" may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.
 - metricID: AIS-07-M3
   measures:
   - measureName: prod_apps_deployed_with_acceptable_vuls
@@ -39,7 +45,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
@@ -60,7 +66,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -81,7 +87,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 365d
   metricFrequency: 365d
-  metricChrontabExample: 0 0 1 1 *
+  metricCrontabExample: 0 0 1 1 *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 365
@@ -102,7 +108,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
@@ -123,7 +129,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 7d
-  metricChrontabExample: 0 0 * * 0
+  metricCrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -144,7 +150,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 85%
     sloPeriod: 30d
@@ -165,7 +171,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -186,7 +192,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -206,7 +212,7 @@ metrics:
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -227,7 +233,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -248,7 +254,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 15d
-  metricChrontabExample: 0 0 1,15 * *
+  metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -269,7 +275,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 15d
-  metricChrontabExample: 0 0 1,15 * *
+  metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -290,7 +296,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -311,7 +317,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -332,7 +338,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -353,7 +359,7 @@ metrics:
   metricFormula: '((1-(A/B))*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -374,7 +380,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1h
   metricFrequency: 1h
-  metricChrontabExample: 0 * * * *
+  metricCrontabExample: 0 * * * *
   metricSLORecommendations:
   - sloRangeMin: 99.99%
     sloPeriod: 1h
@@ -395,7 +401,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99.99%
     sloPeriod: 1d
@@ -416,7 +422,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -437,7 +443,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
@@ -458,7 +464,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 15d
-  metricChrontabExample: 0 0 1,15 * *
+  metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
@@ -479,7 +485,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -500,7 +506,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
@@ -521,7 +527,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 7d
-  metricChrontabExample: 0 0 * * 0
+  metricCrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 7d
@@ -536,7 +542,7 @@ metrics:
   metricFormula: 'A*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -557,7 +563,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 15d
   metricFrequency: 15d
-  metricChrontabExample: 0 0 1,15 * *
+  metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 99.9%
     sloPeriod: 15d
@@ -578,7 +584,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 1,15 * *
+  metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -599,7 +605,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 7d
   metricFrequency: 7d
-  metricChrontabExample: 0 0 * * 0
+  metricCrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 7d
@@ -620,7 +626,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
@@ -641,7 +647,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
@@ -662,7 +668,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
@@ -683,7 +689,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 1d
   metricFrequency: 1d
-  metricChrontabExample: 0 0 * * *
+  metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
@@ -704,7 +710,7 @@ metrics:
   metricFormula: '(A/B)*100'
   metricPeriod: 30d
   metricFrequency: 30d
-  metricChrontabExample: 0 5 */1 * *
+  metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
