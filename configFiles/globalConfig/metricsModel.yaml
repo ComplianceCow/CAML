@@ -19,21 +19,14 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
-  rules: 
-    - "Production Code" is code deployed to the production runtime environment(s) within the scope of the Information Security Program defined in the CCMv4 GRC-05 control objective. 
-    - An "Associated Verification Step" is a capability in the deployment process that ties production code back to a build with traceable results for quality, security, and privacy tests.
+  rules: ""Production Code"" is code deployed to the production runtime environment(s) within the scope of the Information Security Program defined in the CCMv4 GRC-05 control objective. An ""Associated Verification Step"" is a capability in the deployment process that ties production code back to a build with traceable results for quality, security, and privacy tests.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
-  implementationGuidelines:
-    - There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the organization's definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07.
-    - The definition of "deployed production code" used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement.
-    - The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric "Percentage of steps in the Software Deployment Pipeline that have an associated verification step" may be more suitable for an organization.
-    - There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved.
-    - This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.
+  implementationGuidelines: There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of ""deployed production code"" used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric "Percentage of steps in the Software Deployment Pipeline that have an associated verification step" may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.
 - metricID: AIS-07-M3
   measures:
   - measureName: prod_apps_deployed_with_acceptable_vuls
