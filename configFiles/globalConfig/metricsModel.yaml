@@ -28,6 +28,13 @@ metrics:
     sloPeriod: 30d
   implementationGuidelines: There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of ""deployed production code"" used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric "Percentage of steps in the Software Deployment Pipeline that have an associated verification step" may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.
 - metricID: AIS-07-M3
+  primaryControlID: AIS-07 
+  relatedControlID:
+    - AIS-02
+    - AIS-06
+    - TVM-07
+    - DCS-06
+  metricDescription: This metric measures the coverage for application vulnerability remediation across the production code.
   measures:
   - measureName: prod_apps_deployed_with_acceptable_vuls
     measureAlias: A
@@ -43,13 +50,21 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Production Application = Applications tracked within the software inventory established in CCMv4 DCS-06. Acceptable level of risk from application security vulnerabilities: Vulnerabilities categorized as medium or low risk as well as critical or high vulnerabilities marked or identified as 'Accepted' (i.e. remediation not required).  Examples of accepted vulnerabilities can be false positives or vulnerabilities with compensating controls that make the residual risk of exploitation acceptable.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
+  implementationGuidelines: There must be a Software Inventory of Deployed Production Code (see DCS-06 for more info). Production code must be quantified based on the organization's definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-06. The definition of deployed production application used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. Acceptable Level of Risk should be defined by the organizations vulnerability management guidelines (e.g. only Critical and High vulnerabilities, or Medium Vulnerabilities and Higher, etc. Classification of vulnerabilities as High or Critical risk, etc. should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk.)
 - metricID: AIS-07-M6
+  primaryControlID: AIS-07
+  relatedControlID: 
+    - AIS-03
+    - TVM-10
+    - GRC-02
+  metricDescription: This metric measures the percentage of critical vulnerabilities that are not fixed or marked as accepted within the time specified by policy.
   measures:
   - measureName: nc_vuln_remediation_in_prod_apps
     measureAlias: A
@@ -64,13 +79,20 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Production Application = Applications tracked within the software inventory established in CCMv4 DCS-06. Acceptable level of risk from application security vulnerabilities: Vulnerabilities categorized as medium or low risk as well as critical or high vulnerabilities marked or identified as Accepted (i.e. remediation not required). Examples of accepted vulnerabilities can be false positives or vulnerabilities with compensating controls that make the residual risk of exploitation acceptable.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin:
     sloPeriod: 30d
+  implementationGuidelines: 1. Classification of vulnerabilities as High or Critical risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk. 2. Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects vulnerabilities. 3. Date and time of vulnerability remediation or acceptance could be obtained in the following ways: a) From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected; b) From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability; c) From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability. Frequency of evaluation should be aligned with the frequency of vulnerability scans. (Scans should happen at LEAST monthly, but more frequently is recommended). Vulnerability scans can be done at a predefined frequency or whenever new code is built, or deployed.
 - metricID: BCR-06-M1
+  primaryControlID: BCR-06
+  relatedControlID:
+    - BCR-01
+    - BCR-02
+  metricDescription: This metric reports the percentage of critical systems that passed BCR tests.
   measures:
   - measureName: bcr_tests_critical_systems
     measureAlias: A
@@ -85,13 +107,18 @@ metrics:
     measureType: calculate
     measurePeriod: 365d
   metricFormula: '(A/B)*100'
+  rules: Criteria for system criticality must be defined and there must be a list of critical systems identified. Recovery Point Objective(s) and Recovery Time Objective(s) must be defined for critical systems. This metric does not attempt to measure the appropriateness of the recovery point or time objectives (RPOs or RTOs). This metric is dependent on control BCR-02 providing reasonable assurance of sufficient RPOs and RTOs for critical systems. BCR testing intervals must be defined.
   metricPeriod: 365d
   metricFrequency: 365d
   metricCrontabExample: 0 0 1 1 *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 365
+  implementationGuidelines: Critical systems should be identified in accordance with the CCMv4 implementation guidelines for BCR-02. For this metric, passed means achieving the RPO(s) within the RTO(s) defined for each critical system in the scope of the assessment/audit, according to the CCMv4 implementation guidelines for BCR-02. The sampling period for this metric should align with the testing intervals defined by the business continuity plan in accordance with the CCMv4 implementation guidelines for BCR-04. BCR tests should include Chaos Testing, where possible. According to wikipedia, Chaos engineering is the discipline of experimenting on a software system in production in order to build confidence in the system's capability to withstand turbulent and unexpected conditions.
 - metricID: CCC-03-M1
+  primaryControlID: CCC-03
+  relatedControlID: DCS-06
+  metricDescription: Percentage of all assets that have change management technology integrated
   measures:
   - measureName: assets_under_change_management
     measureAlias: A
@@ -106,13 +133,20 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Change management technology covers release management tools that enable automated deployment and rollback of software builds in production.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 30d
+  implementationGuidelines: This metric requires the implementation of CCMv4 DCS-06 Asset Cataloging and Tracking and the capability to determine which assets or asset groups are deployed using change management technology that can rollback changes and/or stop deployment of risky changes based on automated test results. Given the dynamic nature of cloud environments, the metric can provide more value if the variations in the release management system's coverage over the population of assets is reported over time. The percentage of assets that fall within an accepted number of deviations provides stakeholders assurance of whether change control is getting better, worse, or being maintained. Larger populations of more than 1,000 assets can use 6 standard deviations as an acceptable level of change over time (i.e. Six Sigma). Smaller populations of assets will need to use less standard deviations as an acceptable level of change, perhaps even just 1 deviation. For more information on the use of standard deviation in security metrics, see this excerpt of Andrew Jaquith's Security Metrics book.
 - metricID: CCC-07-M1
+  primaryControlID: CCC-07
+  relatedControlID:
+  - DCS-06
+  - CCC-03
+  metricDescription: This metric measures the percent of positive test results from all configuration tests performed.
   measures:
   - measureName: config_items_passing_tests
     measureAlias: A
@@ -127,13 +161,21 @@ metrics:
     measureType: calculate
     measurePeriod: 7d
   metricFormula: '(A/B)*100'
+  rules: This metric captures the number of tests passed out of the total number of tests defined. Each test is assumed to verify a configuration item which is arbitrarily defined as any component for which a test can be defined.
   metricPeriod: 7d
   metricFrequency: 7d
   metricCrontabExample: 0 0 * * 0
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
+  implementationGuidelines: This metric assumes that CCC-03 has been successfully implemented and thus assumes that enough configuration items, at least in terms of number of CCMv4 DCS-06 assets, have change management technology to make this metric meaningful. This metric does not take into account a measure of risk for the configuration tests that have failed. The resulting flat percentage may not tell the full story of risk incurred from a control failure. Future work may incorporate risk measures such as high and critical configuration tests. The frequency of reporting this metric should tie in to the frequency of deployments/expected changes, minimally once a week. This metric should be measured on an automated, continuous basis. Since the scope is under the control of the organization, the metric results should be relatively high. The signal from this metric is that the existing system for change management is working or failing. A low percentage may not indicate a significant cybersecurity risk, but it may be a leading indicator of future security risk if the practice doesn't improve. This is different than IVS-04 which measures the number of hardening tests against all assets.
 - metricID: CEK-03-M2
+  primaryControlID: CEK-03
+  relatedControlID: 
+    - CEK-04
+    - DCS-06
+    - CEK-01
+  metricDescription: This metric measures if the cryptographic module continues to be up to approved standards.
   measures:
   - measureName: acvp_approved_data_assets
     measureAlias: A
@@ -148,13 +190,18 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: 
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 85%
     sloPeriod: 30d
+  implementationGuidelines: This leverages asset management and off-the-shelf automated functionalities while allowing for flexibility against policy (which has previously passed CCMv4 CEK-01 audit). See AVCP: https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing
 - metricID: CEK-04-M1
+  primaryControlID: CEK-04
+  relatedControlID: CEK-05
+  metricDescription: This metric measures the percentage of assets with cryptographic functions that meet an organization's defined cryptographic requirements.
   measures:
   - measureName: compliant_crypto_assets
     measureAlias: A
@@ -169,13 +216,18 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: The specification should be reported for all the adopted cryptographic suites.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
+  implementationGuidelines: For a Minimum Viable Product, the scope of evaluation may be limited to public-facing services, in which case a scan of all externally facing assets should be made and the scanned values compared against the requirements of the policy. The SLO used for this metric may need to be increased or decreased based on the scope of assets covered by the metric. This metric depends on the data classification tool in CCMv4 DSP-03, and requires that an organization determine the appropriate level of encryption for each classification, then requires comparison of the expected encryption applied versus the actual encryption applied, and reports on the difference. CCMv4 IPY-03 covers a subset of this measurement.
 - metricID: DCS-06-M1
+  primaryControlID: DCS-06
+  relatedControlID: LOG-05
+  metricDescription: This metric measures the ratio of managed assets (i.e. catalogued and tracked) to detected assets. The goal is to provide a signal if the asset cataloging and tracking system stops working.
   measures:
   - measureName:
     measureAlias: A
@@ -190,13 +242,22 @@ metrics:
     measureType: calculate
     measurePeriod: 1d
   metricFormula: '(A/B)*100'
+  rules: The assumption is that the design of the DCS-06 control process(es) was found to be effective by internal or external audits.
   metricPeriod: 1d
   metricFrequency: 1d
   metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
+  implementationGuidelines: This relies on the security audit logs as defined in CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05 is inclusive of logs of a number of events such as network traffic, network scanning, physical asset inventory. It assumes that the logs include network traffic logging, and logs from other assets, and are sufficient to detect unexpected assets. We assume everything that is worthy is logged. This is a dependency on the auditor to ensure the logging is complete enough. This is consistent with the metric for UEM-04; implementers may benefit from the similarities. The following is likely dependent on the STA-01 - STA-06 and the SSRM. As those mature perhaps: Any 3rd party CSP's used by the organization where shared responsibility of controls resides in the organization should be included as logical assets for this catalog. For example if a CSP provides a microservice inherent in the operations of an offering that microservice is a logical asset. This ensures that metrics where DCS numbers are used in the denominator include those micro-services. This is intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where the organization is responsible for the controls.
 - metricID: DSP-04-M2
+  primaryControlID: DSP-04
+  relatedControlID:
+    - DSP-01
+    - DSP-03
+    - DSP-04
+    - DSP-05
+  metricDescription: This metric measures the ratio of data assets that have been classified according to data classification policies specific to each organization. An organization may have a predefined list of data types (e.g. health care record, payment card record, identification number, etc.) and / or data sensitivity levels (e.g. Confidential, Internal Use Only, Public).
   measures:
   - measureName:
     measureAlias: A
@@ -211,12 +272,22 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Total number of records classified by type and/or sensitivity - this is a count of all data assets that have a defined classification by type or sensitivity level (Undefined classifications are not counted for this variable). Total number of records stored - this is a count of all data assets that have been collected and are stored in the system such as DSP-03. This metric measures data in terms of distinct data records, not distinct data types.
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
+  implementationGuidelines: All data records must have corresponding metadata related to its data type and / or sensitivity. A defined list of data types and sensitivity levels must be defined. Records that do not meet any of the data classification types or sensitivity levels will have an undefined classification and are not considered as classified for this metric.
 - metricID: DSP-04-M3
+  primaryControlID: DSP-04
+  relatedControlID:
+    - DSP-01
+    - DSP-03
+    - DSP-04
+    - DSP-05
+    - DCS-06
+  metricDescription: This metric measures the ratio of assets in the asset catalog that have been classified according to data classification policies specific to each organization. An organization may have a predefined list of data types (e.g. health care record, payment card record, identification number, etc.) and / or data sensitivity levels (e.g. Confidential, Internal Use Only, Public).
   measures:
   - measureName:
     measureAlias: A
@@ -231,13 +302,18 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Total number of assets classified by type and/or sensitivity of the data contained on the asset - this is a count of all assets that have a defined classification by type or sensitivity level (Undefined classifications are not counted for this variable). Total number of assets - this is a count of all assets that have been collected and are stored in the system such as DSC-06.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
+  implementationGuidelines: All asset records must have corresponding metadata related to the type and / or sensitivity of data stored on the asset. A defined list of data types and sensitivity levels must be defined. Assets that do not contain data of the data classification types or sensitivity levels will have an undefined data classification and are not considered as classified for this metric.
 - metricID: DSP-05-M1
+  primaryControlID: DSP-05
+  relatedControlID: DSP-03
+  metricDescription: This metric measures the percentage of records from the data inventory required by control DSP-03 (CCMv4) that are included in data flow documentation. Cloud service providers and their stakeholders can use this metric to determine whether the volume of data covered by the data flow documentation is sufficient or needs to be updated to satisfy defined business requirements.
   measures:
   - measureName:
     measureAlias: A
@@ -252,13 +328,18 @@ metrics:
     measureType: calculate
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
+  rules: This metric can be measured by counting the number of records in a data store or by simply counting the data stores themselves. CORRECTLY INCLUDED means that the data record or data store is represented in the data flow documentation in accordance with the organization's defined requirements for representing inventories in the documentation. Generally, this means it exists in the documentation and is properly labeled with appropriate CCMv4 DSP-04 classifications if appropriate. Note: The CCMv4 DSP-03 control objective is to Create and maintain a data inventory, at least for any sensitive data and personal data. The CCMv4 DSP-04 control objective is to Classify data according to its type and sensitivity level.
   metricPeriod: 15d
   metricFrequency: 15d
   metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
+  implementationGuidelines: This metric supports an incomplete DSP-03 inventory so long as it is a statistically significant random sampling of at least any sensitive data and personal data (e.g. meets the DSP-03 control language objective). This metric makes the assumption that the data flow diagram(s) is available in a machine-readable format but does not measure automated creation of the data inventory or the data flow documentation. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data repositories. This metric assumes the data flow documentation is in the form of a graph with nodes and edges where data stores are nodes in that graph. In order to count the number of records, there needs to be metadata with the number of records for each datastore. It measures the percentage of data stores (and their records) that are correctly captured as nodes in the graph. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control #5 Data Transfer. This should be evaluated every 2 weeks, or in accordance with the organization's development release cycles.
 - metricID: DSP-05-M2
+  primaryControlID: DSP-05
+  relatedControlID: 
+  metricDescription: This metric measures the percentage of data streams from the data inventory required by control DSP-03 (CCMv4) that are included in the data flow documentation. Cloud service providers and their stakeholders can use a metric like this to determine whether the different uses of data covered by the data flow documentation is sufficient or needs to be updated to satisfy defined business requirements.
   measures:
   - measureName:
     measureAlias: A
@@ -273,13 +354,18 @@ metrics:
     measureType: calculate
     measurePeriod: 15d
   metricFormula: '(A/B)*100'
+  rules: Data streams are the connections from data sources to data consumers illustrated in data flow diagrams. These connections should be included in the data inventory required by control DSP-03 (CCMv4). This may be a complete inventory of all data streams or a reasonable sample of data streams.
   metricPeriod: 15d
   metricFrequency: 15d
   metricCrontabExample: 0 0 1,15 * *
   metricSLORecommendations:
   - sloRangeMin: 80%
     sloPeriod: 15d
+  implementationGuidelines: This metric supports an incomplete inventory of data streams so long as it is a reasonable sampling of streams for at least any sensitive data and personal data (e.g. is intended to measure flows of data of the types that meet the DSP-03 control language objective regarding data inventories). Sampled data streams should be captured from live data streams of user and system activities. This metric assumes the data flow documentation is available in a machine-readable format. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data flows. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control #5 Data Transfer. This should be evaluated every 2 weeks, or in accordance with the organization's development release cycles.
 - metricID: GRC-04-M1
+  primaryControlID: GRC-04
+  relatedControlID: AIS-07
+  metricDescription: This metric measures the effectiveness of the governance program's exception handling process.
   measures:
   - measureName:
     measureAlias: A
@@ -294,13 +380,21 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: An Exception Policy must be defined and must cover the entire lifecycle of an exception. Active policy exceptions that happen during the sampling period but which are not resolved yet are counted in B, not A.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 90%
     sloPeriod: 30d
+  implementationGuidelines: This metric requires organizations to maintain records of policy exceptions that include the approval date and resolution date for calculation of mean time to resolution. The records could be as simple as entries in a spreadsheet or as complex as records for exception tracking in a GRC or vulnerability management system. This metric also requires organizations to define the threshold(s) for acceptable resolution time(s). The definition could be as simple as a statement in a policy document that applies to all exceptions, or individually-defined target dates for resolution of each exception based on risk. In the case of the latter, the requirements for setting the target resolution date(s) should be established in a policy and the target date(s) will need to be tracked in the policy exception records. For example if there is a ticketing system for remediation this tracks if the close date for the ticket was met. If an org has very few exceptions then slipping on even one will dramatically affect their percentage. This is inherent in statistics and is not seen as a problem for now.
 - metricID: IAM-07-M1
+  primaryControlID: IAM-07
+  relatedControlID:
+    - IAM-03
+    - IAM-06
+    - IAM-10
+  metricDescription: This metric measures the percentage of users leaving the organization that were de-provisioned from the identity management system in compliance with the identity and access management policies.
   measures:
   - measureName:
     measureAlias: A
@@ -315,13 +409,22 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: The time lapse between a user's termination and account deactivation must be measured in seconds. The time lapse between user's termination and account deactivation = time stamp of account deactivation event - time stamp of employee termination or role change event recorded in the HR system.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
+  implementationGuidelines: Steps to compute this may look like: 1. Account deactivation timestamps can be obtained from the identity management system. 2. Employee termination or change event timestamps can be obtained from the Human Capital Information System (e.g. Workday). 3. Count of [(User De-Provisioning date - User Termination Date) > Policy Duration)]/Total Number of Terminated Users for the period). This metric only evaluates termination/deprovisioning events as an indicator of efficacy. It does not measure job role change, which can be captured in IAM-08. The recommended sampling period for this metric is monthly, but cloud service providers should ensure the sampling period aligns and frequency of evaluation align with their rate of change and risk tolerance.
 - metricID: IAM-08-M2
+  primaryControlID: IAM-08
+  relatedControlID:
+    - IAM-03
+    - IAM-05
+    - IAM-06
+    - IAM-10
+  metricDescription: This metric measures the time elapsed since the last recertification for all types of privileges (including user roles, group memberships, read/write/execute permissions to files/databases/scripts/jobs, etc). The metric returns the longest time identified. For example, if the longest time elapsed for a recertification of a privilege is 95 days. The metric will return this number. The value returned should not be greater than the frequency of privilege recertification or review defined in the organization's policies.
   measures:
   - measureName:
     measureAlias: A
@@ -336,13 +439,21 @@ metrics:
     measureType: calculate
     measurePeriod: 30d
   metricFormula: '(A/B)*100'
+  rules: Date of last Recertification is the date and time that a privilege was reviewed and recertified in the most recent recertification. If a Date of last recertification does not exist, this should be replaced with the Date a privilege was granted or an account was created.
   metricPeriod: 30d
   metricFrequency: 30d
   metricCrontabExample: 0 5 */1 * *
   metricSLORecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
+  implementationGuidelines: The identity management system or system used to automate the account privilege recertification process (an example of this type of systems is Identity IQ by SailPoint), should maintain timestamps of account creations, privilege granting events (e.g. addition to user groups, granting of security roles, etc). These timestamps can be used to calculate this metric. Orphaned accounts (i.e. accounts that have not been terminated at the time of measurement in IAM-07) should be captured by the User Access Review described in IAM-08. This captures any problem in the process such as: If I review a small number of account then I get a poor score. Or, if I review a large number of accounts and discover them to be in error, I get a bad score. The measurement should be taken monthly to align with IAM-07, even if recertifications occur on a different periodicity.
 - metricID: IAM-09-M1
+  primaryControlID: IAM-09
+  relatedControlID:
+    - IAM-03
+    - IAM-05
+    - IAM-10
+  metricDescription: This metric measures the segregation of duties of non-production staff having access to production roles and vice-versa.
   measures:
   - measureName:
     measureAlias: A
@@ -357,12 +468,14 @@ metrics:
     measureType: calculate
     measurePeriod: 1d
   metricFormula: '((1-(A/B))*100'
+  rules: Capabilities are privileged roles or functions. Examples of production data management capabilities are the AmazonRDSFullAccess policy in AWS, the Cloud SQL Admin & Cloud SQL Editor roles in the Google Cloud Platform (GCP), and db_owner role for a Microsoft Azure SQL Database. Examples of encryption and key management capabilities are the AWSKeyManagementServicePowerUser policy in AWS, Cloud KMS Admin with Cloud KMS CryptoKey Encrypter/Decrypter roles in GCP, or Microsoft Azure Key Vault Admin. Examples of logging capabilities are the AWSCloudTrail_FullAccess policy in AWS, Monitoring Admin & Editor roles in GCP, or Monitoring Contributor in Microsoft Azure.
   metricPeriod: 1d
   metricFrequency: 1d
   metricCrontabExample: 0 0 * * *
   metricSLORecommendations:
   - sloRangeMin: 99%
     sloPeriod: 1d
+  implementationGuidelines: 1. Identify privileged roles in an organization and map to the roles identified in this metric. 2. Run the metric across all users with privilege. In just-in-time (JIT) access capabilities, the audit should evaluate the ability for a user to be provisioned the privilege, even if the individual did not request the privilege during the measurement.
 - metricID: IPY-03-M2
   measures:
   - measureName:
