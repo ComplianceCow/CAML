@@ -55,7 +55,7 @@ metrics:
     example, if an organization uses an Agile development methodology with two-week
     sprints, then the metric should be measured at least every two weeks to provide
     data for review at sprint retros.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: AIS-07-M3
@@ -108,7 +108,7 @@ metrics:
     (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities
     with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores
     between 7 and 9 could be defined as High risk.)
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: AIS-07-M6
@@ -163,7 +163,7 @@ metrics:
     scans. (Scans should happen at LEAST monthly, but more frequently is recommended).
     Vulnerability scans can be done at a predefined frequency or whenever new code
     is built, or deployed.'
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: BCR-06-M1
@@ -253,7 +253,7 @@ metrics:
     standard deviations as an acceptable level of change, perhaps even just 1 deviation.
     For more information on the use of standard deviation in security metrics, see
     this excerpt of Andrew Jaquith's Security Metrics book.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: CCC-07-M1
@@ -334,7 +334,7 @@ metrics:
   implementationGuidelines: 'This leverages asset management and off-the-shelf automated
     functionalities while allowing for flexibility against policy (which has previously
     passed CCMv4 CEK-01 audit).  See AVCP: https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing'
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: CEK-04-M1
@@ -372,7 +372,7 @@ metrics:
     the appropriate level of encryption for each classification, then requires comparison
     of the expected encryption applied versus the actual encryption applied, and reports
     on the difference. CCMv4 IPY-03 covers a subset of this measurement.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: DCS-06-M1
@@ -404,22 +404,22 @@ metrics:
   sloRecommendations:
   - sloRangeMin: 95%
     sloPeriod: 1d
-  implementationGuidelines: 'This relies on the security audit logs as defined in
+  implementationGuidelines: This relies on the security audit logs as defined in
     CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05
     is inclusive of logs of a number of  events such as network traffic, network scanning,
     physical asset inventory. It assumes that the logs include network traffic logging,
     and logs from other assets, and  are sufficient to detect unexpected assets. We
     assume everything that is worthy is logged. This is a dependency on the auditor
     to ensure the logging is complete enough.  This is consistent with the metric
-    for UEM-04; implementers may benefit from the similarities. The following is likely
-    dependent on the STA-01 - STA-06 and the SSRM. As  those mature perhaps: Any 3rd
-    party CSP''s used by the organization where shared responsibility of controls
-    resides in the organization should be included as logical assets  for this catalog.
+    for UEM-04. Implementers may benefit from the similarities. Any 3rd party CSPs used by 
+    the organization where shared responsibility of controls resides in the organization 
+    should be included as logical assets for this catalog. This is likely dependent on the 
+    maturity of STA-01 - STA-06 and the SSRM.
     For example if a CSP provides a microservice inherent in the operations of an
     offering that microservice is a logical asset. This ensures that metrics  where
     DCS numbers are used in the denominator include those micro-services. This is
     intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where
-    the  organization is responsible for the controls.'
+    the  organization is responsible for the controls.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: 1d
@@ -464,7 +464,7 @@ metrics:
     levels must be defined. Records that do not meet any of the data classification
     types or sensitivity levels will have an undefined classification and are not
     considered as classified for this metric.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
 - id: DSP-04-M3
   primaryControlId: DSP-04
@@ -508,7 +508,7 @@ metrics:
     data types and sensitivity levels must be defined. Assets that do not contain
     data of the data classification types or sensitivity levels will have an undefined
     data classification and are not considered as classified for this metric.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: DSP-05-M1
@@ -652,7 +652,7 @@ metrics:
     if the close date for the ticket was met. If an org has very few exceptions then
     slipping on even one will dramatically affect their percentage. This is inherent
     in statistics and is not seen as a problem for now.
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: IAM-07-M1
@@ -687,7 +687,7 @@ metrics:
   sloRecommendations:
   - sloRangeMin: 99%
     sloPeriod: 30d
-  implementationGuidelines: 'Steps to compute this may look like: 1. Account deactivation
+  implementationGuidelines: Steps to compute this may look like: 1. Account deactivation
     timestamps can be obtained from the identity management system. 2. Employee termination
     or change event timestamps can be obtained from the Human Capital Information
     System (e.g. Workday). 3. Count of [(User De-Provisioning date - User Termination
@@ -696,8 +696,8 @@ metrics:
     It does not measure job role change, which can be captured in IAM-08. The recommended
     sampling period for this metric is monthly, but cloud service providers should
     ensure the sampling period aligns and frequency of evaluation align with their
-    rate of change and risk tolerance.'
-  crontabExample: 0 5 */1 * *
+    rate of change and risk tolerance.
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: IAM-08-M2
@@ -713,7 +713,7 @@ metrics:
     time identified. For example, if the longest time elapsed for a recertification
     of a privilege is 95 days. The metric will return this number. The value returned
     should not be greater than the frequency of privilege recertification or review
-    defined in the organization's policies.
+    defined in the organization policies.
   expression:
     formula: "(A/B)*100"
     parameters:
@@ -737,18 +737,18 @@ metrics:
   sloRecommendations:
   - sloRangeMin: 95%
     sloPeriod: 30d
-  implementationGuidelines: 'The identity management system or system used to automate
+  implementationGuidelines: The identity management system or system used to automate
     the account privilege recertification process (an example of this type of systems
     is Identity IQ by SailPoint), should maintain timestamps of account creations,
     privilege granting events (e.g. addition to user groups, granting of security
     roles, etc). These timestamps can be used to calculate this metric. Orphaned accounts
     (i.e. accounts that have not been terminated at the time of measurement in IAM-07)
     should be captured by the User Access Review described in IAM-08. This captures
-    any problem in the process such as: If I review a small number of account then
-    I get a poor score. Or, if I review a large number of accounts and discover them
-    to be in error, I get a bad score. The measurement should be taken monthly to
-    align with IAM-07, even if recertifications occur on a different periodicity.'
-  crontabExample: 0 5 */1 * *
+    any problem in the process. For example, if a small number of accounts are reviewed then
+    the score is poor. Or, if a large number of accounts are reviewed and discovered
+    to be in error, then the score is poor. The measurement should be taken monthly to
+    align with IAM-07, even if recertifications occur on a different periodicity.
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: IAM-09-M1
@@ -988,7 +988,7 @@ metrics:
   - sloRangeMin: 90%
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: SEF-06-M1
@@ -1038,7 +1038,7 @@ metrics:
   - sloRangeMin: 
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: STA-07-M3
@@ -1094,7 +1094,7 @@ metrics:
   - sloRangeMin: 99%
     sloPeriod: 1d
   implementationGuidelines: 
-  crontabExample: 0 0 1,15 * *
+  crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: 1d
 - id: TVM-03-M1
@@ -1151,7 +1151,7 @@ metrics:
   - sloRangeMin: 99%
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   samplingPeriod: 30d
 - id: TVM-10-M1
   primaryControlId: 
@@ -1179,7 +1179,7 @@ metrics:
   - sloRangeMin: 
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: UEM-04-M1
@@ -1207,7 +1207,7 @@ metrics:
   - sloRangeMin: 95%
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
 - id: UEM-05-M1
@@ -1265,6 +1265,6 @@ metrics:
   - sloRangeMin: 99%
     sloPeriod: 30d
   implementationGuidelines: 
-  crontabExample: 0 5 */1 * *
+  crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: 30d
