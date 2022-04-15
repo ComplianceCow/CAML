@@ -51,7 +51,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o camldataservice .
 WORKDIR /go/src
 RUN git clone https://github.com/prometheus/node_exporter
 WORKDIR /go/src/node_exporter
-# RUN make
+RUN make
 
 WORKDIR /go/src
 COPY caml_dev_wrapper_script.sh caml_dev_wrapper_script.sh
