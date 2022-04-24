@@ -52,13 +52,16 @@ services:
       build:
         context: .
         dockerfile: Dockerfile.caml_dev
-        # the $GITREPO value is coming from .env located in the same
-        # directory as this yaml file. It will look something like (make it point to your fork): 
+        # the $GITREPOCAML & $GITREPOCAM values are coming from .env 
+        # located in the same directory as this yaml file. It will look 
+        # something like (make it point to your fork): 
         #   prompt% cat Docker/.env
-        #   GITREPO=https://github.com/ContiNube/CAML.git
+        #   GITREPOCAML=https://github.com/ContiNube/CAML.git
+        #   GITREPOCAM=GITREPOCAM=https://github.com/cloudsecurityalliance/continuous-audit-metrics.git
         # TODO: see about explicitly indicating this file instead of depending on the hidden dot file "sideeffect" 
         args:
-          - gitrepo=$GITREPO
+          - gitrepoCAML=$GITREPOCAML
+          - gitrepoCAM=$GITREPOCAM
       image: caml_dev
       container_name: caml_dev
       tty: true

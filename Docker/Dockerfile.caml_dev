@@ -4,18 +4,27 @@
 
 # go being the lingua in question we start with a golang image so 
 # supporting dev work in place is easy
-FROM golang as prepit
+# NOTE: There appears to be a recent problem building node_exporter on the latest golang
+# ref: https://stackoverflow.com/questions/71758856/github-action-for-golangci-lint-fails-with-cant-load-fmt from 9 days ago
+# TODO: determine process for updating to latest w/o risking random failures
+FROM golang:1.17.7 as prepit
 
 # build a working image by installing git tooling and cloning the repo
 RUN apt-get update
 RUN apt-get install -y git
 RUN apt-get install -y yamllint
 WORKDIR /go/src
+
+# $gitrepo is the Continuous Audit Metrics Library repo
 # $gitrepo needs to be passed in as a --build-arg 
 # or set via docker-compose.caml_dev.yaml
-ARG gitrepo
-RUN git clone $gitrepo
+ARG gitrepoCAML
+RUN git clone $gitrepoCAML
 
+# $gitrepocam is the CSA Continuous Audit Metrics repo
+# set this the same way as you set $gitrep
+ARG gitrepoCAM
+RUN git clone $gitrepoCAM
 
 # at this point a developer can attach vscode to the dev image and work with it directly
 # to do so:
